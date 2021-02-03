@@ -50,7 +50,7 @@ For parliaments without ISO 3166 subdivision codes, **custom codes** can be defi
 | :------------- | :----------: | 
 | New York City Council | `US-NYC` |
 
-These codes shall always be always be in **UPPERCASE** notation.
+These codes shall always be in **UPPERCASE** notation.
 
 #
 ### Languages 
@@ -60,5 +60,5 @@ For languages, [ISO 639-2 Alpha-2](https://www.loc.gov/standards/iso639-2/php/co
 These codes **shall be applied to**:
 * Language-specific paths / filenames (`/lang/lang_en.json`)
 
-These codes shall always be always be in **lowercase** notation.
+These codes shall always be in **lowercase** notation.
 
