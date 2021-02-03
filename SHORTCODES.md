@@ -1,11 +1,11 @@
-### Open Parliament TV Shortcodes
+## Open Parliament TV Shortcodes
 
 This document describes the naming conventions for shortcodes within the *Open Parliament TV* architecture. The **hierarchy** is always:
 * Instance (eg. Germany)
 	* Parliaments (eg. National Parliament, Regional Parliament X, etc.) 
 
 #
-#### Instances 
+### Instances 
 
 Open Parliament TV Instances are usually **country specific** or **transnational** and shall be referenced by their [ISO 3166 Alpha-2 (2-letter) code](https://www.iso.org/obp/ui/#search/code/). 
 
@@ -28,7 +28,7 @@ With the exception of domains and subdomains, these codes shall always be in **U
 
 
 #
-#### Parliaments
+### Parliaments
 
 Parliaments are subdivisions of *Open Parliament TV* Instances and shall be referenced by their ISO 3166 Alpha-2 (2-letter) code (for *national* or *transnational* parliaments) or their respective subdivision (eg. [3166:DE](https://www.iso.org/obp/ui/#iso:code:3166:DE))
 
@@ -53,7 +53,7 @@ For parliaments without ISO 3166 subdivision codes, **custom codes** can be defi
 These codes shall always be always be in **UPPERCASE** notation.
 
 #
-#### Languages 
+### Languages 
 
 For languages, [ISO 639-2 Alpha-2](https://www.loc.gov/standards/iso639-2/php/code_list.php) (2-letter) codes shall be used. In special cases (eg. to avoid overlaps with instance / country codes), the respective Alpha-3 (3-letter) codes can be used as an alternative.
 
