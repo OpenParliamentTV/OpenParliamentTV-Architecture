@@ -1,35 +1,41 @@
 # Open Parliament Platform URL Structure
 
-## Search
+## 1. Search
 `/search?params=`  
 `/api/search?params=`  
 
-## Resources
+## 2. Media, Resources & Users
 ### Media Details
-`/media/BT-MEDIAID?params=`  
-`/api/media/BT-MEDIAID`  
+`/media/MEDIAID?params=`  
+`/api/media/MEDIAID`  
 
 #### Media Embed
-`/embed/BT-MEDIAID`  
+`/embed/MEDIAID`  
 
-#### Media Annotations / Documents / People
-`/api/media/BT-MEDIAID/annotations`  
-`/api/media/BT-MEDIAID/documents`  
-`/api/media/BT-MEDIAID/people`  
+#### Media-specific Annotations (People, Organisations, Documents, Terms)
+`/api/media/MEDIAID/annotations`   
 
 ### Person Details
 `/person/PERSONID`  
 `/api/person/PERSONID`  
 
+### Organisation Details
+`/organisation/ORGANISATIONID`  
+`/api/organisation/ORGANISATIONID`  
+
 ### Document Details
-`/document/BT-DOCUMENTID`  
-`/api/document/BT-DOCUMENTID`  
+`/document/DOCUMENTID`  
+`/api/document/DOCUMENTID`  
+
+### Term Details
+`/term/TERMID`  
+`/api/term/TERMID`  
 
 ### User Details
 `/user/USERID`  
 `/api/user/USERID`  
 
-## Login & Administration
+## 3. Login & Administration
 `/login`  
 `/register` ?  
 `/logout`  
@@ -41,12 +47,24 @@
 `/manage/users` (only admins)  
 `/manage/users/USERID` (access depends on user role / rights)  
 
-`/manage/data` (content depends on user role / rights)  
-`/manage/data/media/BT-MEDIAID` (access depends on user role / rights)  
-`/manage/data/person/PERSONID` (access depends on user role / rights)  
-`/manage/data/document/BT-DOCUMENTID` (access depends on user role / rights)  
+**Manage Data**
 
-`/manage/ingest` (only admins)  
+`/manage/data` (content depends on user role / rights)  
+`/manage/data/media/MEDIAID` (access depends on user role / rights)  
+`/manage/data/person/PERSONID` (access depends on user role / rights)  
+`/manage/data/organisation/ORGANISATIONID` (access depends on user role / rights)  
+`/manage/data/document/DOCUMENTID` (access depends on user role / rights)  
+`/manage/data/term/TERMID` (access depends on user role / rights)  
+
+`/manage/data/media/new` (access depends on user role / rights)  
+`/manage/data/person/new` (access depends on user role / rights)  
+`/manage/data/organisation/new` (access depends on user role / rights)  
+`/manage/data/document/new` (access depends on user role / rights)  
+`/manage/data/term/new` (access depends on user role / rights)  
+
+**Administration**
+
+`/manage/import` (only admins)  
 `/manage/conflicts` (only admins)  
 `/manage/conflicts/CONFLICTID` (only admins)  
 `/manage/config` (only admins)  
