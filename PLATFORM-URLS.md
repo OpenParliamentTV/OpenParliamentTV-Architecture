@@ -1,33 +1,35 @@
-# Search
+# Open Parliament Platform URL Structure
+
+## Search
 `/search?params=`  
 `/api/search?params=`  
 
-# Resources
-## Media Details
+## Resources
+### Media Details
 `/media/BT-MEDIAID?params=`  
 `/api/media/BT-MEDIAID`  
 
-### Media Embed
+#### Media Embed
 `/embed/BT-MEDIAID`  
 
-### Media Annotations / Documents / People
+#### Media Annotations / Documents / People
 `/api/media/BT-MEDIAID/annotations`  
 `/api/media/BT-MEDIAID/documents`  
 `/api/media/BT-MEDIAID/people`  
 
-## Person Details
+### Person Details
 `/person/PERSONID`  
 `/api/person/PERSONID`  
 
-## Document Details
+### Document Details
 `/document/BT-DOCUMENTID`  
 `/api/document/BT-DOCUMENTID`  
 
-## User Details
+### User Details
 `/user/USERID`  
 `/api/user/USERID`  
 
-# Login & Administration
+## Login & Administration
 `/login`  
 `/register` ?  
 `/logout`  
