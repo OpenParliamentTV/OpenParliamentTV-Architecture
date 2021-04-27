@@ -17,8 +17,9 @@ Response objects always include the following properties:
 
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
 
@@ -33,8 +34,9 @@ Response objects always include the following properties:
 **Example Response**  
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
 
@@ -47,8 +49,9 @@ Response objects always include the following properties:
 **Example Response**  
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
 
@@ -58,8 +61,9 @@ Response objects always include the following properties:
 **Example Response**  
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
 
@@ -69,8 +73,9 @@ Response objects always include the following properties:
 **Example Response**  
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
 
@@ -80,8 +85,9 @@ Response objects always include the following properties:
 **Example Response**  
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
 
@@ -91,8 +97,9 @@ Response objects always include the following properties:
 **Example Response**  
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
 
@@ -102,8 +109,9 @@ Response objects always include the following properties:
 **Example Response**  
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
 
@@ -113,7 +121,8 @@ Response objects always include the following properties:
 **Example Response**  
 ```json
 {
-	meta: {}
-    data: {} / errors: {} 
+	"meta": {},
+	"data": {}, // OR
+	"errors": {} 
 }
 ```
