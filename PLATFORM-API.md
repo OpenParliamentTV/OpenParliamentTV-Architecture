@@ -15,11 +15,45 @@ For now we will roughly follow the [JSON:API Specification](https://jsonapi.org/
 
 Response objects always include the following properties:
 
-```json
+```yaml
 {
 	"meta": {},
 	"data": {}, // OR
-	"errors": {} 
+	"errors": [] 
+}
+```
+
+**Successful** requests include the following meta properties:
+
+```yaml
+{
+	"meta": {
+    	
+    },
+    "data": {}
+	..
+}
+```
+
+**Errors** are returned like this:
+
+```yaml
+{
+	"meta": {
+    	
+    },
+    "errors": [
+    	{
+        	"status": "422",
+            "code": "3",
+      		"source": { 
+            	"pointer": "/data/attributes/firstName"
+            },
+      		"title":  "Invalid Attribute",
+      		"detail": "First name must contain at least three characters."
+        }
+    ]
+	..
 }
 ```
 
@@ -32,11 +66,10 @@ Response objects always include the following properties:
 `/api/v1/search?params=`  
 
 **Example Response**  
-```json
+```yaml
 {
 	"meta": {},
-	"data": {}, // OR
-	"errors": {} 
+	"data": {}
 }
 ```
 
@@ -47,11 +80,10 @@ Response objects always include the following properties:
 `/api/v1/media/MEDIAID`  
 
 **Example Response**  
-```json
+```yaml
 {
 	"meta": {},
-	"data": {}, // OR
-	"errors": {} 
+	"data": {}
 }
 ```
 
@@ -59,11 +91,10 @@ Response objects always include the following properties:
 `/api/v1/media/MEDIAID/annotations`   
 
 **Example Response**  
-```json
+```yaml
 {
 	"meta": {},
-	"data": {}, // OR
-	"errors": {} 
+	"data": {}
 }
 ```
 
@@ -71,11 +102,10 @@ Response objects always include the following properties:
 `/api/v1/person/PERSONID`  
 
 **Example Response**  
-```json
+```yaml
 {
 	"meta": {},
-	"data": {}, // OR
-	"errors": {} 
+	"data": {}
 }
 ```
 
@@ -83,11 +113,10 @@ Response objects always include the following properties:
 `/api/v1/organisation/ORGANISATIONID`  
 
 **Example Response**  
-```json
+```yaml
 {
 	"meta": {},
-	"data": {}, // OR
-	"errors": {} 
+	"data": {}
 }
 ```
 
@@ -95,11 +124,10 @@ Response objects always include the following properties:
 `/api/v1/document/DOCUMENTID`  
 
 **Example Response**  
-```json
+```yaml
 {
 	"meta": {},
-	"data": {}, // OR
-	"errors": {} 
+	"data": {}
 }
 ```
 
@@ -107,11 +135,10 @@ Response objects always include the following properties:
 `/api/v1/term/TERMID`  
 
 **Example Response**  
-```json
+```yaml
 {
 	"meta": {},
-	"data": {}, // OR
-	"errors": {} 
+	"data": {}
 }
 ```
 
@@ -119,10 +146,9 @@ Response objects always include the following properties:
 `/api/v1/user/USERID`  
 
 **Example Response**  
-```json
+```yaml
 {
 	"meta": {},
-	"data": {}, // OR
-	"errors": {} 
+	"data": {}
 }
 ```
