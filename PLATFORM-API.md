@@ -17,9 +17,9 @@ Response objects always include the following properties:
 
 ```yaml
 {
-	"meta": {},
-	"data": {}, // OR
-	"errors": [] 
+  "meta": {},
+  "data": {}, // OR
+  "errors": [] 
 }
 ```
 
@@ -27,11 +27,10 @@ Response objects always include the following properties:
 
 ```yaml
 {
-	"meta": {
-    	
-    },
-    "data": {}
-	..
+  "meta": {
+    
+  },
+  "data": {}
 }
 ```
 
@@ -39,21 +38,20 @@ Response objects always include the following properties:
 
 ```yaml
 {
-	"meta": {
-    	
-    },
-    "errors": [
-    	{
-        	"status": "422",
-            "code": "3",
-      		"source": { 
-            	"pointer": "/data/attributes/firstName"
-            },
-      		"title":  "Invalid Attribute",
-      		"detail": "First name must contain at least three characters."
-        }
-    ]
-	..
+  "meta": {
+  
+  },
+  "errors": [
+    {
+      "status": "422",   
+      "code": "3",
+      "source": { 
+        "pointer": "/data/attributes/firstName"
+      },
+      "title":  "Invalid Attribute",
+      "detail": "First name must contain at least three characters."
+    }
+  ]
 }
 ```
 
@@ -68,8 +66,8 @@ Response objects always include the following properties:
 **Example Response**  
 ```yaml
 {
-	"meta": {},
-	"data": {}
+  "meta": {},
+  "data": {}
 }
 ```
 
@@ -82,8 +80,8 @@ Response objects always include the following properties:
 **Example Response**  
 ```yaml
 {
-	"meta": {},
-	"data": {}
+  "meta": {},
+  "data": {}
 }
 ```
 
@@ -93,8 +91,8 @@ Response objects always include the following properties:
 **Example Response**  
 ```yaml
 {
-	"meta": {},
-	"data": {}
+  "meta": {},
+  "data": {}
 }
 ```
 
@@ -104,8 +102,8 @@ Response objects always include the following properties:
 **Example Response**  
 ```yaml
 {
-	"meta": {},
-	"data": {}
+  "meta": {},
+  "data": {}
 }
 ```
 
@@ -115,8 +113,8 @@ Response objects always include the following properties:
 **Example Response**  
 ```yaml
 {
-	"meta": {},
-	"data": {}
+  "meta": {},
+  "data": {}
 }
 ```
 
@@ -126,8 +124,8 @@ Response objects always include the following properties:
 **Example Response**  
 ```yaml
 {
-	"meta": {},
-	"data": {}
+  "meta": {},
+  "data": {}
 }
 ```
 
@@ -137,8 +135,8 @@ Response objects always include the following properties:
 **Example Response**  
 ```yaml
 {
-	"meta": {},
-	"data": {}
+  "meta": {},
+  "data": {}
 }
 ```
 
@@ -148,7 +146,7 @@ Response objects always include the following properties:
 **Example Response**  
 ```yaml
 {
-	"meta": {},
-	"data": {}
+  "meta": {},
+  "data": {}
 }
 ```
