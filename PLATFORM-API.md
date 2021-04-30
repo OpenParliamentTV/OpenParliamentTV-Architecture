@@ -209,36 +209,36 @@ This principle **SHOULD** be applied on all levels of the data structure.
         {
           "id": "2",
           "type": "organisation",
-          "attributes": {}
+          "attributes": {},
+          "links": {
+            "self": "https://de.openparliament.tv/api/v1/organisation/2"
+          }
         }
-      ],
-      "links": {
-        "self": "https://de.openparliament.tv/api/v1/organisation/2"
-      }
+      ]
     },
     "people": {
       "data": [
         {
           "id": "5",
           "type": "person",
-          "attributes": {}
+          "attributes": {},
+          "links": {
+            "self": "https://de.openparliament.tv/api/v1/person/5"
+          }
         }
-      ],
-      "links": {
-        "self": "https://de.openparliament.tv/api/v1/person/5"
-      }
+      ]
     },
     "terms": {
       "data": [
         {
           "id": "107",
           "type": "term",
-          "attributes": {}
+          "attributes": {},
+          "links": {
+            "self": "https://de.openparliament.tv/api/v1/term/107"
+          }
         }
-      ],
-      "links": {
-        "self": "https://de.openparliament.tv/api/v1/term/107"
-      }
+      ]
     }
   },
   "links": {
@@ -288,10 +288,10 @@ This principle **SHOULD** be applied on all levels of the data structure.
           "labelAlternative": "Christlich Demokratische Union",
           "thumbnailURI": "https://example.com/image.png",
           "websiteURI": "https://example.com/"
+        },
+        "links": {
+          "self": "https://de.openparliament.tv/api/v1/organisations/Q53467"
         }
-      },
-      "links": {
-        "self": "https://de.openparliament.tv/api/v1/organisations/Q53467"
       }
     },
     "faction": {
@@ -303,10 +303,10 @@ This principle **SHOULD** be applied on all levels of the data structure.
           "labelAlternative": "CDU/CSU Fraktion",
           "thumbnailURI": "https://example.com/image.png",
           "websiteURI": "https://example.com/"
+        },
+        "links": {
+          "self": "https://de.openparliament.tv/api/v1/organisations/1"
         }
-      },
-      "links": {
-        "self": "https://de.openparliament.tv/api/v1/organisations/1"
       }
     }
   },
