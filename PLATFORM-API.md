@@ -165,19 +165,17 @@ This principle **SHOULD** be applied on all levels of the data structure.
       "number": 19,
         "dateStart": "2017-09-24",
         "dateEnd": null
-    }
-    "hash": "872g4fig3b4f71834gfi13ug4",
+    },
     "order": 2,
     "originID": "9786865",
     "originMediaCreator": "Deutscher Bundestag",
     "originMediaID": "7502148",   
-    "public": true,
     "session": {
       "id": 178
       "number": 110,
       "dateStart": "2018-03-18T00:00+00:00",
       "dateEnd": "2018-03-18T00:00+00:00"
-    }
+    },
     "sourcePage": "https://dbtg.tv/fvid/7502148",
     "textContents": [
       {
@@ -198,20 +196,21 @@ This principle **SHOULD** be applied on all levels of the data structure.
         {
           "id": "201",
           "type": "document",
-          "attributes": {}
+          "attributes": {},
+          "links": {
+            "self": "https://de.openparliament.tv/api/v1/document/201"
+          }
         }
-      ],
-      "links": {
-        "self": "https://de.openparliament.tv/api/v1/document/201"
-      }
+      ]
+    },
     "organisations": {
       "data": [
         {
-          "id": "2",
+          "id": "Q875",
           "type": "organisation",
           "attributes": {},
           "links": {
-            "self": "https://de.openparliament.tv/api/v1/organisation/2"
+            "self": "https://de.openparliament.tv/api/v1/organisation/Q875"
           }
         }
       ]
@@ -219,11 +218,11 @@ This principle **SHOULD** be applied on all levels of the data structure.
     "people": {
       "data": [
         {
-          "id": "5",
+          "id": "Q2889",
           "type": "person",
           "attributes": {},
           "links": {
-            "self": "https://de.openparliament.tv/api/v1/person/5"
+            "self": "https://de.openparliament.tv/api/v1/person/Q2889"
           }
         }
       ]
@@ -296,7 +295,7 @@ This principle **SHOULD** be applied on all levels of the data structure.
     },
     "faction": {
       "data": {
-        "id": "1",
+        "id": "Q98634",
         "type": "organisation",
         "attributes": {
           "label": "CDU/CSU",
@@ -305,9 +304,21 @@ This principle **SHOULD** be applied on all levels of the data structure.
           "websiteURI": "https://example.com/"
         },
         "links": {
-          "self": "https://de.openparliament.tv/api/v1/organisations/1"
+          "self": "https://de.openparliament.tv/api/v1/organisations/Q98634"
         }
       }
+    },
+    "media": {
+      "data": [
+        {
+          "id": "DE-198765837",
+          "type": "media",
+          "attributes": {}, // TODO: Check which properties are needed here
+          "links": {
+            "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
+          }
+        }
+      ]
     }
   },
   "links": {
@@ -399,23 +410,6 @@ This principle **SHOULD** be applied on all levels of the data structure.
   }
   "links": {
     "self": "https://de.openparliament.tv/api/v1/term/165"
-  }
-}
-```
-
-### 3.6 User Details
-`/api/v1/user/USERID`  
-
-The Public API only returns a small subset of properties for users.
-
-**Example Response**  
-```yaml
-"data": {
-  "id": "1",
-  "type": "user",
-  "attributes": {},
-  "links": {
-    "self": "https://de.openparliament.tv/api/v1/user/1"
   }
 }
 ```
