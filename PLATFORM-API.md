@@ -139,7 +139,7 @@ This principle **SHOULD** be applied on all levels of the data structure.
 }
 ```
 
-## 3. Media, Resources & Users
+## 3. Data Object Details
 ### 3.1 Media Details
 `/api/v1/media/MEDIAID`  
 
