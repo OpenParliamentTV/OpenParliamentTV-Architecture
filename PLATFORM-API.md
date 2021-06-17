@@ -88,8 +88,8 @@ Data Objects **MUST** always include the properties:
 - **attributes** (data item specific properties)
 
 Additionally Data Objects **CAN** include the properties:
-- **relationships** (properties derived from other data items)
 - **links** ("self" = link to the respective API request URL)
+- **relationships** (properties derived from other data items)
 
 Depending on the context, the **attributes** object can only include a subset of all properties. The full set can then be retrieved via an API request to **links** > **self**.
 
@@ -99,25 +99,28 @@ This principle **SHOULD** be applied on all levels of the data structure.
 
 ```yaml
 "data": {
-  "id": "DE-198765837",
   "type": "media",
+  "id": "DE-198765837",
   "attributes": {},
+  "links": {
+    "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
+  }
   "relationships": {
     "documents": {
       "data": [
         {
-          "id": "201",
           "type": "document",
+          "id": "201",
           "attributes": {},
           "links": {
             "self": "https://de.openparliament.tv/api/v1/document/201"
           }
         }
       ],
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=document"
+      }
     }
-  },
-  "links": {
-    "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
   }
 }
 ```
