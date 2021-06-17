@@ -146,102 +146,192 @@ This principle **SHOULD** be applied on all levels of the data structure.
 **Example Response**  
 ```yaml
 "data": {
-  "id": "DE-198765837",
   "type": "media",
+  "id": "DE-198765837",
   "attributes": {
-    "agendaItem": {
-      "id": "3",
-      "number": 4,
-      "officialTitle": "Tagesordnungspunkt 1"
-      "order": 2,
-      "title": "Bundeswehreinsatz in Afghanistan"
-    },
+    "additionalInformation": {},
     "aligned": true,
     "audioFileURI": "https://example.com/media.mp3",
+    "creator": "Deutscher Bundestag",
     "dateStart": "2007-08-31T16:47+00:00",
     "dateEnd": "2007-08-31T16:58+00:00",
     "duration": 340.32134,
-    "electoralPeriod": {
-      "number": 19,
-        "dateStart": "2017-09-24",
-        "dateEnd": null
-    },
+    "lastChanged": "2021-03-18T03:22+00:00",
+    "license": "CC-BY-SA",
     "order": 2,
     "originID": "9786865",
-    "originMediaCreator": "Deutscher Bundestag",
-    "originMediaID": "7502148",   
-    "session": {
-      "id": 178
-      "number": 110,
-      "dateStart": "2018-03-18T00:00+00:00",
-      "dateEnd": "2018-03-18T00:00+00:00"
-    },
+    "originMediaID": "7502148",
     "sourcePage": "https://dbtg.tv/fvid/7502148",
     "textContents": [
       {
         "id": 34,
-        "type": "timedText",
-        "body": "Sehr geehrte Damen und Herren, ...",
-        "originBody": "Sehr geehrte Damen und Herren, ...",
+        "type": "text",
+        "textBody": [
+          {
+            "type": "speech",
+            "text": "Sehr geehrte Damen und Herren, ..."
+          },
+          {
+            "type": "comment",
+            "text": "(Beifall bei der CDU/CSU, der FDP und dem BÜNDNIS 90/DIE GRÜNEN sowie bei Abgeordneten der SPD und der AfD)"
+          }
+        ],
         "sourceURI": "https://www.bundestag.de/resource/blob/813c4/19203-data.xml",
-        "sourceCreator": "Deutscher Bundestag"
+        "creator": "Deutscher Bundestag",
+        "license": "Public Domain",
+        "language": "DE-de",
+        "originTextID": "9786865"
       }
     ],
+    "thumbnailCreator": "Deutscher Bundestag",
+    "thumbnailLicense": "CC-BY-SA",
     "thumbnailURI": "https://example.com/thumb.png",
     "videoFileURI": "https://example.com/media.mp4"
   },
+  "links": {
+    "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
+  },
   "relationships": {
+    "electoralPeriod": {
+      "data": {
+        "type": "electoralPeriod",
+        "id": 3,
+        "attributes": {
+          "number": 19
+        },
+        "links": {
+          "self": "https://de.openparliament.tv/api/v1/electoralperiod/DE-19"
+        }
+      }
+    },
+    "session": {
+      "data": {
+        "type": "session",
+        "id": 84,
+        "attributes": {
+            "number": 110
+        },
+        "links": {
+          "self": "https://de.openparliament.tv/api/v1/session/DE-110"
+        }
+      }
+    },
+    "agendaItem": {
+      "data": {
+        "type": "agendaItem",
+        "id": 3,
+        "attributes": {
+          "officialTitle": "Tagesordnungspunkt 1",
+          "title": "Bundeswehreinsatz in Afghanistan"
+        },
+        "links": {
+          "self": "https://de.openparliament.tv/api/v1/agendaitem/DE-3"
+        }
+      }
+    },
     "documents": {
       "data": [
         {
-          "id": "201",
           "type": "document",
-          "attributes": {},
+          "id": 201,
+          "attributes": {
+            "context": null,
+            "type": "officialDocument",
+            "label": "Drucksache 12/2",
+            "labelAlternative": "12/2",
+            "thumbnailCreator": null,
+            "thumbnailLicense": null,
+            "thumbnailURI": null
+          },
           "links": {
             "self": "https://de.openparliament.tv/api/v1/document/201"
           }
         }
-      ]
+      ],
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=document"
+      }
     },
     "organisations": {
-      "data": [
-        {
-          "id": "Q875",
-          "type": "organisation",
-          "attributes": {},
-          "links": {
-            "self": "https://de.openparliament.tv/api/v1/organisation/Q875"
+        "data": [
+          {
+            "type": "organisation",
+            "id": "Q567",
+            "attributes": {
+              "context": null,
+              "type": "party",
+              "label": "CDU",
+              "thumbnailCreator": "Deutscher Bundestag",
+              "thumbnailLicense": "CC-BY-SA",
+              "thumbnailURI": "https://example.com/thumb.png",
+              "color": "#00ff00"
+            },
+            "links": {
+              "self": "https://de.openparliament.tv/api/v1/organisation/Q567"
+            }
+          },
+          {
+            "type": "organisation",
+            "id": "Q45345",
+            "attributes": {
+              "context": null,
+              "type": "faction",
+              "label": "CDU/CSU",
+              "thumbnailCreator": "Deutscher Bundestag",
+              "thumbnailLicense": "CC-BY-SA",
+              "thumbnailURI": "https://example.com/thumb.png",
+              "color": "#ff0000"
+            },
+            "links": {
+              "self": "https://de.openparliament.tv/api/v1/organisation/Q45345"
+            }
           }
+        ],
+        "links": {
+            "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=person"
         }
-      ]
     },
     "people": {
-      "data": [
-        {
-          "id": "Q2889",
-          "type": "person",
-          "attributes": {},
-          "links": {
-            "self": "https://de.openparliament.tv/api/v1/person/Q2889"
+        "data": [
+          {
+            "type": "person",
+            "id": "Q2889",
+            "attributes": {
+              "context": "speaker",
+              "type": "memberOfParliament",
+              "label": "Angela Merkel",
+              "degree": "Dr.",
+              "thumbnailCreator": "Deutscher Bundestag",
+              "thumbnailLicense": "CC-BY-SA",
+              "thumbnailURI": "https://example.com/thumb.png",
+              "party": {
+                "id": "Q567",
+                "label": "CDU"
+              },
+              "faction": {
+                "id": "Q45345",
+                "label": "CDU/CSU"
+              }
+            },
+            "links": {
+              "self": "https://de.openparliament.tv/api/v1/person/Q2889"
+            }
           }
+        ],
+        "links": {
+            "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=person"
         }
-      ]
+    },
+    "annotations": {
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837"
+      }
     },
     "terms": {
-      "data": [
-        {
-          "id": "107",
-          "type": "term",
-          "attributes": {},
-          "links": {
-            "self": "https://de.openparliament.tv/api/v1/term/107"
-          }
-        }
-      ]
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=terms"
+      }
     }
-  },
-  "links": {
-    "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
   }
 }
 ```
@@ -255,7 +345,7 @@ This principle **SHOULD** be applied on all levels of the data structure.
   "id": "Q567",
   "type": "person",
   "attributes": {
-    "subtype": "memberOfParliament",
+    "type": "memberOfParliament",
     "label": "Angela Merkel",
     "abstract": "Bundeskanzlerin der Bundesrepublik Deutschland",
     "firstName": "Angela",
