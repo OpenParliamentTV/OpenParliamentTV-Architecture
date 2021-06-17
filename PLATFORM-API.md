@@ -123,7 +123,13 @@ This principle **SHOULD** be applied on all levels of the data structure.
 ```
 
 ## 2. Search
-`/api/v1/search?params=`  
+`/api/v1/searchMedia?params=`  
+`/api/v1/searchPeople?params=`  
+`/api/v1/searchOrganisations?params=`  
+`/api/v1/searchDocuments?params=`  
+`/api/v1/searchTerms?params=`  
+`/api/v1/searchAnnotations?params=`  
+
 
 **Parameters**  
 |Parameter |Notes  |
