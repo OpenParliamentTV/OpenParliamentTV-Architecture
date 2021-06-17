@@ -155,19 +155,23 @@ This principle **SHOULD** be applied on all levels of the data structure.
   "type": "media",
   "id": "DE-198765837",
   "attributes": {
-    "additionalInformation": {},
-    "aligned": true,
-    "audioFileURI": "https://example.com/media.mp3",
+    "originID": "9786865",
+    "originMediaID": "7502148",
     "creator": "Deutscher Bundestag",
+    "license": "CC-BY-SA",
+    "order": 2,
+    "aligned": true,
     "dateStart": "2007-08-31T16:47+00:00",
     "dateEnd": "2007-08-31T16:58+00:00",
     "duration": 340.32134,
-    "lastChanged": "2021-03-18T03:22+00:00",
-    "license": "CC-BY-SA",
-    "order": 2,
-    "originID": "9786865",
-    "originMediaID": "7502148",
+    "videoFileURI": "https://example.com/media.mp4"
+    "audioFileURI": "https://example.com/media.mp3",
     "sourcePage": "https://dbtg.tv/fvid/7502148",
+    "thumbnailURI": "https://example.com/thumb.png"
+    "thumbnailCreator": "Deutscher Bundestag",
+    "thumbnailLicense": "CC-BY-SA",
+    "additionalInformation": {},
+    "lastChanged": "2021-03-18T03:22+00:00",
     "textContents": [
       {
         "id": 34,
@@ -188,11 +192,7 @@ This principle **SHOULD** be applied on all levels of the data structure.
         "language": "DE-de",
         "originTextID": "9786865"
       }
-    ],
-    "thumbnailCreator": "Deutscher Bundestag",
-    "thumbnailLicense": "CC-BY-SA",
-    "thumbnailURI": "https://example.com/thumb.png",
-    "videoFileURI": "https://example.com/media.mp4"
+    ]
   },
   "links": {
     "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
@@ -245,9 +245,9 @@ This principle **SHOULD** be applied on all levels of the data structure.
             "type": "officialDocument",
             "label": "Drucksache 12/2",
             "labelAlternative": "12/2",
+            "thumbnailURI": null
             "thumbnailCreator": null,
             "thumbnailLicense": null,
-            "thumbnailURI": null
           },
           "links": {
             "self": "https://de.openparliament.tv/api/v1/document/201"
@@ -262,18 +262,18 @@ This principle **SHOULD** be applied on all levels of the data structure.
         "data": [
           {
             "type": "organisation",
-            "id": "Q567",
+            "id": "Q356465",
             "attributes": {
               "context": null,
               "type": "party",
               "label": "CDU",
+              "thumbnailURI": "https://example.com/thumb.png",
               "thumbnailCreator": "Deutscher Bundestag",
               "thumbnailLicense": "CC-BY-SA",
-              "thumbnailURI": "https://example.com/thumb.png",
               "color": "#00ff00"
             },
             "links": {
-              "self": "https://de.openparliament.tv/api/v1/organisation/Q567"
+              "self": "https://de.openparliament.tv/api/v1/organisation/Q356465"
             }
           },
           {
@@ -283,9 +283,9 @@ This principle **SHOULD** be applied on all levels of the data structure.
               "context": null,
               "type": "faction",
               "label": "CDU/CSU",
+              "thumbnailURI": "https://example.com/thumb.png",
               "thumbnailCreator": "Deutscher Bundestag",
               "thumbnailLicense": "CC-BY-SA",
-              "thumbnailURI": "https://example.com/thumb.png",
               "color": "#ff0000"
             },
             "links": {
@@ -307,11 +307,11 @@ This principle **SHOULD** be applied on all levels of the data structure.
               "type": "memberOfParliament",
               "label": "Angela Merkel",
               "degree": "Dr.",
+              "thumbnailURI": "https://example.com/thumb.png",
               "thumbnailCreator": "Deutscher Bundestag",
               "thumbnailLicense": "CC-BY-SA",
-              "thumbnailURI": "https://example.com/thumb.png",
               "party": {
-                "id": "Q567",
+                "id": "Q356465",
                 "label": "CDU"
               },
               "faction": {
@@ -348,8 +348,8 @@ This principle **SHOULD** be applied on all levels of the data structure.
 **Example Response**  
 ```yaml
 "data": {
-  "id": "Q567",
   "type": "person",
+  "id": "Q567",
   "attributes": {
     "type": "memberOfParliament",
     "label": "Angela Merkel",
