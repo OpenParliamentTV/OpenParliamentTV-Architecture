@@ -104,7 +104,7 @@ This principle **SHOULD** be applied on all levels of the data structure.
   "attributes": {},
   "links": {
     "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
-  }
+  },
   "relationships": {
     "documents": {
       "data": [
