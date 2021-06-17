@@ -368,10 +368,10 @@ This principle **SHOULD** be applied on all levels of the data structure.
     "embedURI": "https://example.com/mobile/Angela_Merkel",
     "websiteURI": "https://www.angela-merkel.de/",
     "originID": "969768675",
-    "socialMediaURIs": [
+    "socialMediaIDs": [
       {
         "label": "Instagram",
-        "url": "instagram.com/Merkel"
+        "id": "Merkel"
       }
     ],
     "additionalInformation": {
@@ -444,11 +444,20 @@ This principle **SHOULD** be applied on all levels of the data structure.
     "thumbnailLicense": "CC-BY-SA",
     "embedURI": null,
     "websiteURI": "https://cdu.de",
-    "socialMediaURIs": {
-      "twitter": "CDU",
-      "facebook": "CDU",
-      "instagram": "cdu"
-    },
+    "socialMediaIDs": [
+      {
+        "label": "Twitter",
+        "id": "CDU"
+      },
+      {
+        "label": "Facebook",
+        "id": "CDU"
+      },
+      {
+        "label": "Instagram",
+        "id": "cdu"
+      }
+    ],
     "color": "#0000ff",
     "additionalInformation": {},
     "lastChanged": "2021-03-18T03:22+00:00"
