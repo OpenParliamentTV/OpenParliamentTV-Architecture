@@ -353,35 +353,43 @@ This principle **SHOULD** be applied on all levels of the data structure.
   "attributes": {
     "type": "memberOfParliament",
     "label": "Angela Merkel",
-    "abstract": "Bundeskanzlerin der Bundesrepublik Deutschland",
     "firstName": "Angela",
     "lastName": "Merkel",
     "degree": "Dr.",
-    "gender": "female",
     "birthDate": "1954-07-17",
+    "gender": "female",
+    "abstract": "Bundeskanzlerin der Bundesrepublik Deutschland",
     "thumbnailURI": "https://example.com/image.png",
+    "thumbnailCreator": "Deutscher Bundestag",
+    "thumbnailLicense": "CC-BY-SA",
     "embedURI": "https://example.com/mobile/Angela_Merkel",
     "websiteURI": "https://www.angela-merkel.de/",
+    "originID": "969768675",
     "socialMediaURIs": [
       {
         "label": "Instagram",
         "url": "instagram.com/Merkel"
       }
     ],
-    "originID": "969768675",
     "additionalInformation": {
       "abgeordnetenwatchID": "7643642"
-    }
+    },
+    "lastChanged": "2021-03-18T03:22+00:00"
+  },
+  "links": {
+    "self": "https://de.openparliament.tv/api/v1/person/Q1267"
   },
   "relationships": {
     "party": {
       "data": {
-        "id": "Q53467",
         "type": "organisation",
+        "id": "Q53467",
         "attributes": {
           "label": "CDU",
           "labelAlternative": "Christlich Demokratische Union",
           "thumbnailURI": "https://example.com/image.png",
+          "thumbnailCreator": "Deutscher Bundestag",
+          "thumbnailLicense": "CC-BY-SA",
           "websiteURI": "https://example.com/"
         },
         "links": {
@@ -391,12 +399,14 @@ This principle **SHOULD** be applied on all levels of the data structure.
     },
     "faction": {
       "data": {
-        "id": "Q98634",
         "type": "organisation",
+        "id": "Q98634",
         "attributes": {
           "label": "CDU/CSU",
           "labelAlternative": "CDU/CSU Fraktion",
           "thumbnailURI": "https://example.com/image.png",
+          "thumbnailCreator": "Deutscher Bundestag",
+          "thumbnailLicense": "CC-BY-SA",
           "websiteURI": "https://example.com/"
         },
         "links": {
@@ -405,20 +415,10 @@ This principle **SHOULD** be applied on all levels of the data structure.
       }
     },
     "media": {
-      "data": [
-        {
-          "id": "DE-198765837",
-          "type": "media",
-          "attributes": {}, // TODO: Check which properties are needed here
-          "links": {
-            "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
-          }
-        }
-      ]
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?personID=Q1267"
+      }
     }
-  },
-  "links": {
-    "self": "https://de.openparliament.tv/api/v1/person/Q1267"
   }
 }
 ```
@@ -429,25 +429,41 @@ This principle **SHOULD** be applied on all levels of the data structure.
 **Example Response**  
 ```yaml
 "data": {
-  "id": "Q567",
   "type": "organisation",
-  "attributes": {},
-  "relationships": {
-    "media": {
-      "data": [
-        {
-          "id": "DE-198765837",
-          "type": "media",
-          "attributes": {}, // TODO: Check which properties are needed here
-          "links": {
-            "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
-          }
-        }
-      ]
-    }
-  }
+  "id": "Q53467",
+  "attributes": {
+    "type": "party",
+    "label": "CDU",
+    "labelAlternative": "Christlich Demokratische Union",
+    "abstract": "Partei in Deutschland",
+    "thumbnailURI": "https://example.com/image.png",
+    "thumbnailCreator": "CDU Deutschland",
+    "thumbnailLicense": "CC-BY-SA",
+    "embedURI": null,
+    "websiteURI": "https://cdu.de",
+    "socialMediaURIs": {
+      "twitter": "CDU",
+      "facebook": "CDU",
+      "instagram": "cdu"
+    },
+    "color": "#0000ff",
+    "additionalInformation": {},
+    "lastChanged": "2021-03-18T03:22+00:00"
+  },
   "links": {
     "self": "https://de.openparliament.tv/api/v1/organisation/Q53467"
+  },
+  "relationships": {
+    "media": {
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?organisationID=Q53467"
+      }
+    },
+    "people": {
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchPeople?organisationID=Q53467"
+      }
+    }
   }
 }
 ```
@@ -458,25 +474,31 @@ This principle **SHOULD** be applied on all levels of the data structure.
 **Example Response**  
 ```yaml
 "data": {
-  "id": "3",
   "type": "document",
-  "attributes": {},
-  "relationships": {
-    "media": {
-      "data": [
-        {
-          "id": "DE-198765837",
-          "type": "media",
-          "attributes": {}, // TODO: Check which properties are needed here
-          "links": {
-            "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
-          }
-        }
-      ]
-    }
-  }
+  "id": "3",
+  "attributes": {
+    "type": "officialDocument",
+    "wikidataID": null,
+    "label": "Drucksache 12/2",
+    "labelAlternative": "12/2",
+    "abstract": "",
+    "thumbnailURI": "https://example.com/image.png",
+    "thumbnailCreator": "system",
+    "thumbnailLicense": "Public Domain",
+    "sourceURI": "https://dserver.bundestag.de/btd/19/000/1900002.pdf"
+    "embedURI": null,
+    "additionalInformation": {},
+    "lastChanged": "2021-03-18T03:22+00:00"
+  },
   "links": {
     "self": "https://de.openparliament.tv/api/v1/document/3"
+  },
+  "relationships": {
+    "media": {
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?documentID=3"
+      }
+    }
   }
 }
 ```
@@ -487,25 +509,31 @@ This principle **SHOULD** be applied on all levels of the data structure.
 **Example Response**  
 ```yaml
 "data": {
-  "id": "165",
   "type": "term",
-  "attributes": {},
-  "relationships": {
-    "media": {
-      "data": [
-        {
-          "id": "DE-198765837",
-          "type": "media",
-          "attributes": {}, // TODO: Check which properties are needed here
-          "links": {
-            "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
-          }
-        }
-      ]
-    }
-  }
+  "id": "165",
+  "attributes": {
+    "type": null,
+    "wikidataID": null,
+    "label": "Subsidiaritätsprinzip",
+    "labelAlternative": null,
+    "abstract": null,
+    "thumbnailURI": "https://example.com/image.png",
+    "thumbnailCreator": "system",
+    "thumbnailLicense": "Public Domain",
+    "sourceURI": null,
+    "embedURI": null,
+    "additionalInformation": {},
+    "lastChanged": "2021-03-18T03:22+00:00"
+  },
   "links": {
     "self": "https://de.openparliament.tv/api/v1/term/165"
+  },
+  "relationships": {
+    "media": {
+      "links": {
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?termID=165"
+      }
+    }
   }
 }
 ```
