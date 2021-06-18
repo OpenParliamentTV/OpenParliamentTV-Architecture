@@ -193,7 +193,8 @@ This principle **SHOULD** be applied on all levels of the data structure.
         "creator": "Deutscher Bundestag",
         "license": "Public Domain",
         "language": "DE-de",
-        "originTextID": "9786865"
+        "originTextID": "9786865",
+        "lastChanged": "2021-03-18T03:22+00:00"
       }
     ]
   },
@@ -270,6 +271,7 @@ This principle **SHOULD** be applied on all levels of the data structure.
               "context": null,
               "type": "party",
               "label": "CDU",
+              "alternativeLabel": "Christlich Demokratische Union",
               "thumbnailURI": "https://example.com/thumb.png",
               "thumbnailCreator": "Deutscher Bundestag",
               "thumbnailLicense": "CC-BY-SA",
@@ -286,6 +288,7 @@ This principle **SHOULD** be applied on all levels of the data structure.
               "context": null,
               "type": "faction",
               "label": "CDU/CSU",
+              "alternativeLabel": "CDU/CSU Fraktion",
               "thumbnailURI": "https://example.com/thumb.png",
               "thumbnailCreator": "Deutscher Bundestag",
               "thumbnailLicense": "CC-BY-SA",
