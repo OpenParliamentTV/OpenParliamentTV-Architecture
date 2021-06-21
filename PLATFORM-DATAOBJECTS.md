@@ -414,12 +414,12 @@
   "id": 3,
   "attributes": {},
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/electoralPeriod/3"
+    "self": "https://de.openparliament.tv/api/v1/electoralPeriod/DE-3"
   },
   "relationships": {
     "media": {
       "links": {
-        "self": "https://de.openparliament.tv/api/v1/searchMedia?electoralPeriodID=3"
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?electoralPeriodID=DE-3"
       }
     }
   }
@@ -436,12 +436,12 @@
   "id": 84,
   "attributes": {},
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/session/84"
+    "self": "https://de.openparliament.tv/api/v1/session/DE-84"
   },
   "relationships": {
     "media": {
       "links": {
-        "self": "https://de.openparliament.tv/api/v1/searchMedia?sessionID=84"
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?sessionID=DE-84"
       }
     }
   }
@@ -458,12 +458,12 @@
   "id": 3,
   "attributes": {},
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/agendaItem/3"
+    "self": "https://de.openparliament.tv/api/v1/agendaItem/DE-3"
   },
   "relationships": {
     "media": {
       "links": {
-        "self": "https://de.openparliament.tv/api/v1/searchMedia?agendaItemID=3"
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?agendaItemID=DE-3"
       }
     }
   }
