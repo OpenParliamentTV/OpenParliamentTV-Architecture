@@ -7,7 +7,7 @@
 ```yaml
 "data": {
   "type": "media",
-  "id": "DE-198765837",
+  "id": "DE-019021012",
   "attributes": {
     "originID": "9786865",
     "originMediaID": "7502148",
@@ -50,30 +50,30 @@
     ]
   },
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
+    "self": "https://de.openparliament.tv/api/v1/media/DE-019021012"
   },
   "relationships": {
     "electoralPeriod": {
       "data": {
         "type": "electoralPeriod",
-        "id": 3,
+        "id": "DE-019",
         "attributes": {
           "number": 19
         },
         "links": {
-          "self": "https://de.openparliament.tv/api/v1/electoralperiod/DE-19"
+          "self": "https://de.openparliament.tv/api/v1/electoralPeriod/DE-019"
         }
       }
     },
     "session": {
       "data": {
         "type": "session",
-        "id": 84,
+        "id": "DE-019110",
         "attributes": {
             "number": 110
         },
         "links": {
-          "self": "https://de.openparliament.tv/api/v1/session/DE-110"
+          "self": "https://de.openparliament.tv/api/v1/session/DE-019110"
         }
       }
     },
@@ -86,7 +86,7 @@
           "title": "Bundeswehreinsatz in Afghanistan"
         },
         "links": {
-          "self": "https://de.openparliament.tv/api/v1/agendaitem/DE-3"
+          "self": "https://de.openparliament.tv/api/v1/agendaItem/DE-3"
         }
       }
     },
@@ -110,7 +110,7 @@
         }
       ],
       "links": {
-        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=document"
+        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-019021012&type=document"
       }
     },
     "organisations": {
@@ -151,7 +151,7 @@
           }
         ],
         "links": {
-            "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=person"
+            "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-019021012&type=person"
         }
     },
     "people": {
@@ -182,17 +182,17 @@
           }
         ],
         "links": {
-            "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=person"
+            "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-019021012&type=person"
         }
     },
     "annotations": {
       "links": {
-        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837"
+        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-019021012"
       }
     },
     "terms": {
       "links": {
-        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=terms"
+        "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-019021012&type=terms"
       }
     }
   }
@@ -405,21 +405,25 @@
 ```
 
 ### 6 Electoral Period
-`/api/v1/electoralPeriod/???`  
+`/api/v1/electoralPeriod/ELECTORALPERIODID`  
 
 **Example Response**  
 ```yaml
 "data": {
   "type": "electoralPeriod",
-  "id": 3,
-  "attributes": {},
+  "id": "DE-019",
+  "attributes": {
+    "number": 19,
+    "dateStart": "2017-06-21",
+    "dateEnd": null
+  },
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/electoralPeriod/DE-3"
+    "self": "https://de.openparliament.tv/api/v1/electoralPeriod/DE-019"
   },
   "relationships": {
     "media": {
       "links": {
-        "self": "https://de.openparliament.tv/api/v1/searchMedia?electoralPeriodID=DE-3"
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?electoralPeriodID=DE-019"
       }
     }
   }
@@ -427,21 +431,25 @@
 ```
 
 ### 7 Session
-`/api/v1/session/???`  
+`/api/v1/session/SESSIONID`  
 
 **Example Response**  
 ```yaml
 "data": {
   "type": "session",
-  "id": 84,
-  "attributes": {},
+  "id": "DE-0190084,
+  "attributes": {
+    "number": 84,
+    "dateStart": "2017-10-24 09:03:00",
+    "dateEnd": "2017-10-24 17:25:00"
+  },
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/session/DE-84"
+    "self": "https://de.openparliament.tv/api/v1/session/DE-0190084"
   },
   "relationships": {
     "media": {
       "links": {
-        "self": "https://de.openparliament.tv/api/v1/searchMedia?sessionID=DE-84"
+        "self": "https://de.openparliament.tv/api/v1/searchMedia?sessionID=DE-0190084"
       }
     }
   }
@@ -449,14 +457,18 @@
 ```
 
 ### 8 Agenda Item
-`/api/v1/agendaItem/???`  
+`/api/v1/agendaItem/AGENDAITEMID`  
 
 **Example Response**  
 ```yaml
 "data": {
   "type": "agendaItem",
   "id": 3,
-  "attributes": {},
+  "attributes": {
+    "officialTitle": "Tagesordnungspunkt 1",
+    "title": "Bundeswehreinsatz in Afghanistan",
+    "order": null
+  },
   "links": {
     "self": "https://de.openparliament.tv/api/v1/agendaItem/DE-3"
   },
