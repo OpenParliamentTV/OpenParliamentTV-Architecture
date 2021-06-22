@@ -129,7 +129,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 
 ## 2. Search
 
-`/api/v1/search?type=media`
+##### `/api/v1/search?type=media`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
@@ -139,7 +139,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | faction |  | label, labelAlternative | String OR Array |
 | ... |  | ... | String OR Array |
 
-`/api/v1/search?type=people`
+##### `/api/v1/search?type=people`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
@@ -155,7 +155,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | type?? |  | type (eg. "memberOfParliament") | String |
 
 
-`/api/v1/search?type=organisations`
+##### `/api/v1/search?type=organisations`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
@@ -164,7 +164,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | wikidataID |  | id | String |
 | type?? |  | type (eg. "party") | String |
 
-`/api/v1/search?type=documents`
+##### `/api/v1/search?type=documents`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
@@ -173,7 +173,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | wikidataID |  | wikidataID | String |
 | type?? |  | type (eg. "officialDocument") | String |
 
-`/api/v1/search?type=terms`
+##### `/api/v1/search?type=terms`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
