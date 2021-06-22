@@ -129,7 +129,18 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 
 ## 2. Search
 
+`/api/v1/search?type=media`
+
+**Parameters**  
+| Parameter | Validation  | Matches | Type |
+--- | --- | --- | ---
+| q |  | Full Text Search | String |
+| party |  | label, labelAlternative | String OR Array |
+| faction |  | label, labelAlternative | String OR Array |
+| ... |  | ... | String OR Array |
+
 `/api/v1/search?type=people`
+
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
@@ -145,6 +156,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 
 
 `/api/v1/search?type=organisations`
+
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
@@ -153,6 +165,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | type?? |  | type (eg. "party") | String |
 
 `/api/v1/search?type=documents`
+
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
@@ -161,6 +174,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | type?? |  | type (eg. "officialDocument") | String |
 
 `/api/v1/search?type=terms`
+
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
