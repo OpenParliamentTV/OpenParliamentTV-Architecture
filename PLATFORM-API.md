@@ -129,14 +129,17 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 
 ## 2. Search
 
-##### `/api/v1/search?type=media`
+##### `/api/v1/search/media?`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
-| q |  | Full Text Search | String |
-| party |  | label, labelAlternative | String OR Array |
-| faction |  | label, labelAlternative | String OR Array |
+| q | min 3 chars | Full Text Search | String |
+| party | min 1 char | label, labelAlternative | String OR Array |
+| partyID | min 1 char | partyOrganisationID | String OR Array |
+| faction | min 1 char | label, labelAlternative | String OR Array |
+| factionID | min 1 char | partyOrganisationID | String OR Array |
+| name | min 3 chars | ??? | String |
 | ... |  | ... | String OR Array |
 
 ##### `/api/v1/search?type=people`
@@ -145,41 +148,41 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
 | name | min 3 chars | label, firstName, lastName | String |
-| party |  | label, labelAlternative | String OR Array |
-| faction |  | label, labelAlternative | String OR Array |
-| degree |  | degree | String |
-| gender |  | gender | String |
-| wikidataID |  | id | String |
-| originID |  | originID | String |
-| abgeordnetenwatchID |  | abgeordnetenwatchID | String |
-| type?? |  | type (eg. "memberOfParliament") | String |
+| type | min 1 char | type | String |
+| party | min 1 char | organisation.label, organisation.labelAlternative | String OR Array |
+| partyID | min 1 char | partyOrganisationID | String OR Array |
+| faction | min 1 char | organisation.label, organisation.labelAlternative | String OR Array |
+| factionID | min 1 char | factionOrganisationID | String OR Array |
+| degree | min 1 char | degree | String |
+| gender | min 1 char | gender | String |
+| originID | min 1 char | originID | String |
+| abgeordnetenwatchID | min 1 char | additionalInformation.abgeordnetenwatchID | String |
 
 
-##### `/api/v1/search?type=organisations`
-
-**Parameters**  
-| Parameter | Validation  | Matches | Type |
---- | --- | --- | ---
-| name |  | label, labelAlternative | String OR Array |
-| wikidataID |  | id | String |
-| type?? |  | type (eg. "party") | String |
-
-##### `/api/v1/search?type=documents`
+##### `/api/v1/search/organisations?`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
-| name |  | label, labelAlternative | String OR Array |
-| wikidataID |  | wikidataID | String |
-| type?? |  | type (eg. "officialDocument") | String |
+| name | min 3 chars | label, labelAlternative | String OR Array |
+| type | min 1 char | type | String |
 
-##### `/api/v1/search?type=terms`
+##### `/api/v1/search/documents?`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
-| name |  | label, labelAlternative | String OR Array |
-| wikidataID |  | wikidataID | String |
+| label | min 3 chars | label, labelAlternative | String OR Array |
+| type | min 1 char | type | String |
+| wikidataID | min 1 char | wikidataID | String |
+
+##### `/api/v1/search/terms?`
+
+**Parameters**  
+| Parameter | Validation  | Matches | Type |
+--- | --- | --- | ---
+| label | min 3 chars | label, labelAlternative | String OR Array |
+| wikidataID | min 1 char | wikidataID | String |
 
 ___
 
@@ -200,7 +203,7 @@ ___
       "maxScore": 4.7654785 
     }
   },
-  "data": []
+  "data": [],
   "links": {
     "self": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU",
     "first": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=1&page[size]=1",
