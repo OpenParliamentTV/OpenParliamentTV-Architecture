@@ -128,25 +128,72 @@ This principle **SHOULD** be applied on all levels of the data structure.
 Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.md)
 
 ## 2. Search
-`/api/v1/searchMedia?params=`  
-`/api/v1/searchPeople?params=`  
-`/api/v1/searchOrganisations?params=`  
-`/api/v1/searchDocuments?params=`  
-`/api/v1/searchTerms?params=`  
-`/api/v1/searchAnnotations?params=`  
 
-
+`/api/v1/search?type=people`
 **Parameters**  
-|Parameter |Notes  |
---- | ---
-|param1|Explaination|
-|param2|Explaination|
+| Parameter | Validation  | Matches | Type |
+--- | --- | --- | ---
+| name | min 3 chars | label, firstName, lastName | String |
+| party |  | label, labelAlternative | String OR Array |
+| faction |  | label, labelAlternative | String OR Array |
+| degree |  | degree | String |
+| gender |  | gender | String |
+| wikidataID |  | id | String |
+| originID |  | originID | String |
+| abgeordnetenwatchID |  | abgeordnetenwatchID | String |
+| type?? |  | type (eg. "memberOfParliament") | String |
+
+
+`/api/v1/search?type=organisations`
+**Parameters**  
+| Parameter | Validation  | Matches | Type |
+--- | --- | --- | ---
+| name |  | label, labelAlternative | String OR Array |
+| wikidataID |  | id | String |
+| type?? |  | type (eg. "party") | String |
+
+`/api/v1/search?type=documents`
+**Parameters**  
+| Parameter | Validation  | Matches | Type |
+--- | --- | --- | ---
+| name |  | label, labelAlternative | String OR Array |
+| wikidataID |  | wikidataID | String |
+| type?? |  | type (eg. "officialDocument") | String |
+
+`/api/v1/search?type=terms`
+**Parameters**  
+| Parameter | Validation  | Matches | Type |
+--- | --- | --- | ---
+| name |  | label, labelAlternative | String OR Array |
+| wikidataID |  | wikidataID | String |
+
+___
 
 **Example Response**  
 ```yaml
 {
-  "meta": {},
-  "data": {}
+  "meta": {
+    "api": {
+      "version": "1.0",
+      "documentation": "https://de.openparliament.tv/api"
+    },
+    "requestStatus": "success",
+    "results": {
+      "count": 25,
+      "total": 128,
+      "rangeStart": 50,
+      "rangeEnd": 75,
+      "maxScore": 4.7654785 
+    }
+  },
+  "data": []
+  "links": {
+    "self": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU",
+    "first": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=1&page[size]=1",
+    "prev": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=2&page[size]=1",
+    "next": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=4&page[size]=1",
+    "last": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=13&page[size]=1"
+  }
 }
 ```
 
