@@ -6,7 +6,7 @@ For now we will roughly follow the [JSON:API Specification](https://jsonapi.org/
 
 ### 1.1 Paths
 **API Documentation**  
-`/api`  
+`/documentation/api`  
 
 **API Endpoint Base URL**  
 `/api/v1`  
@@ -20,7 +20,7 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/api"
+      "documentation": "https://de.openparliament.tv/documentation/api"
     },
     "requestStatus": "success" // OR "error"
   },
@@ -39,7 +39,7 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/api"
+      "documentation": "https://de.openparliament.tv/documentation/api"
     },
     "requestStatus": "success",
     "code": "2",
@@ -59,7 +59,7 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/api"
+      "documentation": "https://de.openparliament.tv/documentation/api"
     },
     "requestStatus": "error"
   },
@@ -196,13 +196,13 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 
 ___
 
-**Example Response**  
+#### Example Response  
 ```yaml
 {
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/api"
+      "documentation": "https://de.openparliament.tv/documentation/api"
     },
     "requestStatus": "success",
     "results": {
@@ -210,16 +210,16 @@ ___
       "total": 128,
       "rangeStart": 51,
       "rangeEnd": 75,
-      "maxScore": 4.7654785 
+      "maxScore": 4.7654785 /* float or null */
     }
   },
   "data": [],
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=3&page[size]=25",
-    "first": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=1&page[size]=25",
-    "prev": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=2&page[size]=25",
-    "next": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=4&page[size]=25",
-    "last": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=13&page[size]=25"
+    "self": "https://de.openparliament.tv/api/v1/search/people?party=CDU&page[number]=3&page[size]=25",
+    "first": "https://de.openparliament.tv/api/v1/search/people?party=CDU&page[number]=1&page[size]=25",
+    "prev": "https://de.openparliament.tv/api/v1/search/people?party=CDU&page[number]=2&page[size]=25",
+    "next": "https://de.openparliament.tv/api/v1/search/people?party=CDU&page[number]=4&page[size]=25",
+    "last": "https://de.openparliament.tv/api/v1/search/people?party=CDU&page[number]=13&page[size]=25"
   }
 }
 ```
