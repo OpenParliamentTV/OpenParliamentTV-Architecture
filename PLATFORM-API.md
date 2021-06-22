@@ -142,7 +142,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | name | min 3 chars | ??? | String |
 | ... |  | ... | String OR Array |
 
-##### `/api/v1/search?type=people`
+##### `/api/v1/search/people?`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
