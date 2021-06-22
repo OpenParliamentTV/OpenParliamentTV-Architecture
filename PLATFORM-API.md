@@ -135,11 +135,21 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
 | q | min 3 chars | Full Text Search | String |
+| parliament | min 2 chars | ?? | String |
+| electoralPeriod | min 1 chars | ?? | String |
+| session | min 1 char | ?? | String |
+| dateFrom | date in ISO format (ex. "2017-10-28") | ?? | String |
+| dateTo | date in ISO format (ex. "2017-12-22") | ?? | String |
 | party | min 1 char | label, labelAlternative | String OR Array |
 | partyID | min 1 char | partyOrganisationID | String OR Array |
 | faction | min 1 char | label, labelAlternative | String OR Array |
 | factionID | min 1 char | partyOrganisationID | String OR Array |
-| name | min 3 chars | ??? | String |
+| person | min 3 chars | ??? | String |
+| personID | Wikidata ID RegEx | ??? | String |
+| personOriginID | min 1 char | ??? | String |
+| personAbgeordnetenwatchID | min 1 char | ??? | String |
+| organisation | min 3 chars | ??? | String |
+| organisationID | Wikidata ID RegEx | ??? | String |
 | ... |  | ... | String OR Array |
 
 ##### `/api/v1/search/people?`
@@ -154,7 +164,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | faction | min 1 char | organisation.label, organisation.labelAlternative | String OR Array |
 | factionID | Wikidata ID RegEx | factionOrganisationID | String OR Array |
 | degree | min 1 char | degree | String |
-| gender | "male", "female", "diverse", "...." | gender | String |
+| gender | "male", "female", "nonbinary", "bi", "queer" | gender | String |
 | originID | min 1 char | originID | String |
 | abgeordnetenwatchID | min 1 char | additionalInformation.abgeordnetenwatchID | String |
 
@@ -198,18 +208,18 @@ ___
     "results": {
       "count": 25,
       "total": 128,
-      "rangeStart": 50,
+      "rangeStart": 51,
       "rangeEnd": 75,
       "maxScore": 4.7654785 
     }
   },
   "data": [],
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU",
-    "first": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=1&page[size]=1",
-    "prev": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=2&page[size]=1",
-    "next": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=4&page[size]=1",
-    "last": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=13&page[size]=1"
+    "self": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=3&page[size]=25",
+    "first": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=1&page[size]=25",
+    "prev": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=2&page[size]=25",
+    "next": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=4&page[size]=25",
+    "last": "https://de.openparliament.tv/api/v1/search?type=people&party=CDU&page[number]=13&page[size]=25"
   }
 }
 ```
