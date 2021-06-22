@@ -148,13 +148,13 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
 | name | min 3 chars | label, firstName, lastName | String |
-| type | min 1 char | type | String |
+| type | "memberOfParliament", "unknown" | type | String |
 | party | min 1 char | organisation.label, organisation.labelAlternative | String OR Array |
-| partyID | min 1 char | partyOrganisationID | String OR Array |
+| partyID | Wikidata ID RegEx | partyOrganisationID | String OR Array |
 | faction | min 1 char | organisation.label, organisation.labelAlternative | String OR Array |
-| factionID | min 1 char | factionOrganisationID | String OR Array |
+| factionID | Wikidata ID RegEx | factionOrganisationID | String OR Array |
 | degree | min 1 char | degree | String |
-| gender | min 1 char | gender | String |
+| gender | "male", "female", "diverse", "...." | gender | String |
 | originID | min 1 char | originID | String |
 | abgeordnetenwatchID | min 1 char | additionalInformation.abgeordnetenwatchID | String |
 
@@ -174,7 +174,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 --- | --- | --- | ---
 | label | min 3 chars | label, labelAlternative | String OR Array |
 | type | min 1 char | type | String |
-| wikidataID | min 1 char | wikidataID | String |
+| wikidataID | Wikidata ID RegEx | wikidataID | String |
 
 ##### `/api/v1/search/terms?`
 
@@ -182,7 +182,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
 | label | min 3 chars | label, labelAlternative | String OR Array |
-| wikidataID | min 1 char | wikidataID | String |
+| wikidataID | Wikidata ID RegEx | wikidataID | String |
 
 ___
 
