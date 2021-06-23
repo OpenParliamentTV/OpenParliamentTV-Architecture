@@ -2,7 +2,7 @@
 
 ## 1. General Notes
 
-For now we will roughly follow the [JSON:API Specification](https://jsonapi.org/format/). Whether or not we will fully implement the standard (also for PATCH requests / data updates) is to be discussed.
+For now, we will roughly follow the [JSON:API Specification](https://jsonapi.org/format/). Whether or not we will fully implement the standard (also for PATCH requests / data updates) is to be discussed.
 
 ### 1.1 Paths
 **API Documentation**  
@@ -43,7 +43,7 @@ Responses **MUST** include the following properties for any request (GET **and**
     },
     "requestStatus": "success",
     "code": "2",
-    "detail": "Request successfull"
+    "detail": "Request successful"
   },
   "data": {},
   "links": {
@@ -125,13 +125,14 @@ This principle **SHOULD** be applied on all levels of the data structure.
 }
 ```
 
+
 Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.md)
 
 ## 2. Search
 
 ##### `/api/v1/search/media?`
 
-**Parameters**  
+**Parameters** 
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
 | q | min 3 chars | Full Text Search | String |
@@ -163,6 +164,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | partyID | Wikidata ID RegEx | partyOrganisationID | String OR Array |
 | faction | min 1 char | organisation.label, organisation.labelAlternative | String OR Array |
 | factionID | Wikidata ID RegEx | factionOrganisationID | String OR Array |
+| organisationID | Wikidata ID RegEx | factionOrganisationID, partyOrganisationID | String |
 | degree | min 1 char | degree | String |
 | gender | "male", "female", "nonbinary", "bi", "queer" | gender | String |
 | originID | min 1 char | originID | String |
@@ -174,16 +176,16 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
-| name | min 3 chars | label, labelAlternative | String OR Array |
-| type | min 1 char | type | String |
+| name | min 3 chars | label, labelAlternative, abstract | String OR Array |
+| type | min 2 char | type | String |
 
 ##### `/api/v1/search/documents?`
 
 **Parameters**  
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
-| label | min 3 chars | label, labelAlternative | String OR Array |
-| type | min 1 char | type | String |
+| label | min 3 chars | label, labelAlternative, abstract | String OR Array |
+| type | min 2 char | type | String |
 | wikidataID | Wikidata ID RegEx | wikidataID | String |
 
 ##### `/api/v1/search/terms?`
@@ -192,6 +194,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
 | label | min 3 chars | label, labelAlternative | String OR Array |
+| type | min 2 chars | type | String |
 | wikidataID | Wikidata ID RegEx | wikidataID | String |
 
 ___
