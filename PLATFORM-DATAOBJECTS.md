@@ -13,6 +13,8 @@
     "originMediaID": "7502148",
     "creator": "Deutscher Bundestag",
     "license": "CC-BY-SA",
+    "parliament": "DE",
+    "parliamentLabel": "Deutscher Bundestag",
     "order": 2,
     "aligned": true,
     "dateStart": "2007-08-31T16:47+00:00",
@@ -415,7 +417,9 @@
   "attributes": {
     "number": 19,
     "dateStart": "2017-06-21",
-    "dateEnd": null
+    "dateEnd": null,
+    "parliament": "DE",
+    "parliamentLabel": "Deutscher Bundestag"
   },
   "links": {
     "self": "https://de.openparliament.tv/api/v1/electoralPeriod/DE-019"
@@ -437,11 +441,13 @@
 ```yaml
 "data": {
   "type": "session",
-  "id": "DE-0190084,
+  "id": "DE-0190084",
   "attributes": {
     "number": 84,
     "dateStart": "2017-10-24 09:03:00",
-    "dateEnd": "2017-10-24 17:25:00"
+    "dateEnd": "2017-10-24 17:25:00",
+    "parliament": "DE",
+    "parliamentLabel": "Deutscher Bundestag"
   },
   "links": {
     "self": "https://de.openparliament.tv/api/v1/session/DE-0190084"
@@ -467,7 +473,9 @@
   "attributes": {
     "officialTitle": "Tagesordnungspunkt 1",
     "title": "Bundeswehreinsatz in Afghanistan",
-    "order": null
+    "order": null,
+    "parliament": "DE",
+    "parliamentLabel": "Deutscher Bundestag"
   },
   "links": {
     "self": "https://de.openparliament.tv/api/v1/agendaItem/DE-3"
