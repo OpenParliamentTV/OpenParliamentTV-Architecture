@@ -2,42 +2,44 @@
 
 ## 1. Search
 `/search?params=`  
-`/api/search?params=`  
+`/api/v1/search/ITEMTYPE?params=`  
 
 ## 2. Media, Resources & Users
 ### Media Details
-`/media/MEDIAID?params=`  
-`/api/media/MEDIAID`  
+`/media/MEDIAID`  
+`/api/v1/media/MEDIAID`  
 
 #### Media Embed
 `/embed/MEDIAID`  
 
 #### Media-specific Annotations (People, Organisations, Documents, Terms)
-`/api/media/MEDIAID/annotations`   
+`/api/v1/media/MEDIAID/annotations`   
 
 ### Person Details
 `/person/PERSONID`  
-`/api/person/PERSONID`  
+`/api/v1/person/PERSONID`  
 
 ### Organisation Details
 `/organisation/ORGANISATIONID`  
-`/api/organisation/ORGANISATIONID`  
+`/api/v1/organisation/ORGANISATIONID`  
 
 ### Document Details
 `/document/DOCUMENTID`  
-`/api/document/DOCUMENTID`  
+`/api/v1/document/DOCUMENTID`  
 
 ### Term Details
 `/term/TERMID`  
-`/api/term/TERMID`  
+`/api/v1/term/TERMID`  
 
 ### User Details
-`/user/USERID`  
-`/api/user/USERID`  
+`/user/USERID`  (access depends on user role / rights)
+`/api/v1/user/USERID`  (access depends on user role / rights)
 
 ## 3. Login & Administration
 `/login`  
-`/register` ?  
+`/register`   
+`/registerconfirm`   
+`/passwordreset`   
 `/logout`  
 
 `/dashboard` (content depends on user role / rights)  
@@ -68,3 +70,8 @@
 `/manage/conflicts` (only admins)  
 `/manage/conflicts/CONFLICTID` (only admins)  
 `/manage/config` (only admins)  
+
+## 4. Documentation
+`/documentation`  
+`/documentation/api`  
+
