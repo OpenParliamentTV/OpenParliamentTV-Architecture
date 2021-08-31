@@ -2,7 +2,7 @@
 
 ## 1. General Notes
 
-For now, we will roughly follow the [JSON:API Specification](https://jsonapi.org/format/). Whether or not we will fully implement the standard (also for PATCH requests / data updates) is to be discussed.
+The API structure is based on the [JSON:API Specification](https://jsonapi.org/format/). Whether or not we will fully implement the standard (also for PATCH requests / data updates) is to be discussed.
 
 ### 1.1 Paths
 **API Documentation**  
@@ -20,14 +20,18 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/api"
+      "documentation": "https://de.openparliament.tv/api",
+      "license": {
+        "label": "ODC Open Database License (ODbL) v1.0",
+        "link": "https://opendatacommons.org/licenses/odbl/1-0/"
+      }
     },
     "requestStatus": "success" // OR "error"
   },
   "data": [], // {} OR []
   "errors": [], // EITHER "data" OR "errors"
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/search?q=Rente" // request URL
+    "self": "https://de.openparliament.tv/api/v1/search/media?q=Rente" // request URL
   }
 }
 ```
@@ -39,15 +43,17 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/api"
+      "documentation": "https://de.openparliament.tv/api",
+      "license": {
+        "label": "ODC Open Database License (ODbL) v1.0",
+        "link": "https://opendatacommons.org/licenses/odbl/1-0/"
+      }
     },
-    "requestStatus": "success",
-    "code": "2",
-    "detail": "Request successful"
+    "requestStatus": "success"
   },
   "data": {},
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/search?q=Rente" // request URL
+    "self": "https://de.openparliament.tv/api/v1/search/media?q=Rente" // request URL
   }
 }
 ```
@@ -59,7 +65,11 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/api"
+      "documentation": "https://de.openparliament.tv/api",
+      "license": {
+        "label": "ODC Open Database License (ODbL) v1.0",
+        "link": "https://opendatacommons.org/licenses/odbl/1-0/"
+      }
     },
     "requestStatus": "error"
   },
@@ -75,7 +85,7 @@ Responses **MUST** include the following properties for any request (GET **and**
     }
   ],
   "links": {
-    "self": "https://de.openparliament.tv/api/v1/search?q=Rente" // request URL
+    "self": "https://de.openparliament.tv/api/v1/search/media?q=Rente" // request URL
   }
 }
 ```
@@ -210,7 +220,11 @@ ___
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/api"
+      "documentation": "https://de.openparliament.tv/api",
+      "license": {
+        "label": "ODC Open Database License (ODbL) v1.0",
+        "link": "https://opendatacommons.org/licenses/odbl/1-0/"
+      }
     },
     "requestStatus": "success",
     "results": {
