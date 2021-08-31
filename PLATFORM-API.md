@@ -6,7 +6,7 @@ For now, we will roughly follow the [JSON:API Specification](https://jsonapi.org
 
 ### 1.1 Paths
 **API Documentation**  
-`/documentation/api`  
+`/api`  
 
 **API Endpoint Base URL**  
 `/api/v1`  
