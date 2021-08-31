@@ -148,9 +148,8 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | faction | min 1 char | people.data.attributes.faction.labelAlternative | String OR Array |
 | factionID | min 1 char | organisations.data.id | String OR Array |
 | person | min 3 chars | people.data.attributes.label | String |
-| personID | Wikidata ID RegEx | people.data.id | String |
+| personID | Wikidata ID RegEx | people.data.id | String OR Array |
 | abgeordnetenwatchID | min 1 char | people.data.attributes.additionalInformation.abgeordnetenwatchID | String |
-| organisation | min 3 chars |  | String |
 | organisationID | Wikidata ID RegEx | people.data.attributes.party.id, people.data.attributes.faction.id | String |
 | context | min 3 chars | people.data.attributes.context, organisations.data.attributes.context | String |
 | agendaItemID | min 2 chars | agendaItem.data.id | String |
