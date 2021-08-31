@@ -147,8 +147,8 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 --- | --- | --- | ---
 | q | min 3 chars | Full Text Search | String |
 | parliament | min 2 chars | ?? | String |
-| electoralPeriod | min 1 chars | electoralPeriod.data.attributes.number | String |
-| electoralPeriodID | min 1 chars | electoralPeriod.data.id | String |
+| electoralPeriod | min 1 char | electoralPeriod.data.attributes.number | String |
+| electoralPeriodID | min 1 char | electoralPeriod.data.id | String |
 | sessionID | min 1 char | session.data.id | String |
 | sessionNumber | min 1 char | session.data.attributes.number | String |
 | dateFrom | date in ISO format (ex. "2017-10-28") | dateStart | String |
@@ -192,7 +192,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
 | name | min 3 chars | label, labelAlternative, abstract | String OR Array |
-| type | min 2 char | type | String |
+| type | min 2 chars | type | String |
 
 ##### `/api/v1/search/documents?`
 
@@ -200,7 +200,7 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 | Parameter | Validation  | Matches | Type |
 --- | --- | --- | ---
 | label | min 3 chars | label, labelAlternative, abstract | String OR Array |
-| type | min 2 char | type | String |
+| type | min 2 chars | type | String |
 | wikidataID | Wikidata ID RegEx | wikidataID | String |
 
 ##### `/api/v1/search/terms?`
