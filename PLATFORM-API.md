@@ -20,7 +20,7 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/documentation/api"
+      "documentation": "https://de.openparliament.tv/api"
     },
     "requestStatus": "success" // OR "error"
   },
@@ -39,7 +39,7 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/documentation/api"
+      "documentation": "https://de.openparliament.tv/api"
     },
     "requestStatus": "success",
     "code": "2",
@@ -59,7 +59,7 @@ Responses **MUST** include the following properties for any request (GET **and**
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/documentation/api"
+      "documentation": "https://de.openparliament.tv/api"
     },
     "requestStatus": "error"
   },
@@ -102,9 +102,6 @@ This principle **SHOULD** be applied on all levels of the data structure.
   "type": "media",
   "id": "DE-198765837",
   "attributes": {},
-  "links": {
-    "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
-  },
   "relationships": {
     "documents": {
       "data": [
@@ -121,6 +118,9 @@ This principle **SHOULD** be applied on all levels of the data structure.
         "self": "https://de.openparliament.tv/api/v1/searchAnnotations?mediaID=DE-198765837&type=document"
       }
     }
+  },
+  "links": {
+    "self": "https://de.openparliament.tv/api/v1/media/DE-198765837"
   }
 }
 ```
@@ -137,21 +137,27 @@ Examples for all data types see: [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.
 --- | --- | --- | ---
 | q | min 3 chars | Full Text Search | String |
 | parliament | min 2 chars | ?? | String |
-| electoralPeriod | min 1 chars | ?? | String |
-| session | min 1 char | ?? | String |
-| dateFrom | date in ISO format (ex. "2017-10-28") | ?? | String |
-| dateTo | date in ISO format (ex. "2017-12-22") | ?? | String |
-| party | min 1 char | label, labelAlternative | String OR Array |
-| partyID | min 1 char | partyOrganisationID | String OR Array |
-| faction | min 1 char | label, labelAlternative | String OR Array |
-| factionID | min 1 char | partyOrganisationID | String OR Array |
-| person | min 3 chars | ??? | String |
-| personID | Wikidata ID RegEx | ??? | String |
-| personOriginID | min 1 char | ??? | String |
-| personAbgeordnetenwatchID | min 1 char | ??? | String |
-| organisation | min 3 chars | ??? | String |
-| organisationID | Wikidata ID RegEx | ??? | String |
-| ... |  | ... | String OR Array |
+| electoralPeriod | min 1 chars | electoralPeriod.data.attributes.number | String |
+| electoralPeriodID | min 1 chars | electoralPeriod.data.id | String |
+| sessionID | min 1 char | session.data.id | String |
+| sessionNumber | min 1 char | session.data.attributes.number | String |
+| dateFrom | date in ISO format (ex. "2017-10-28") | dateStart | String |
+| dateTo | date in ISO format (ex. "2017-12-22") | dateStart | String |
+| party | min 1 char | people.data.attributes.party.labelAlternative | String OR Array |
+| partyID | min 1 char | organisations.data.id | String OR Array |
+| faction | min 1 char | people.data.attributes.faction.labelAlternative | String OR Array |
+| factionID | min 1 char | organisations.data.id | String OR Array |
+| person | min 3 chars | people.data.attributes.label | String |
+| personID | Wikidata ID RegEx | people.data.id | String |
+| abgeordnetenwatchID | min 1 char | people.data.attributes.additionalInformation.abgeordnetenwatchID | String |
+| organisation | min 3 chars |  | String |
+| organisationID | Wikidata ID RegEx | people.data.attributes.party.id, people.data.attributes.faction.id | String |
+| context | min 3 chars | people.data.attributes.context, organisations.data.attributes.context | String |
+| agendaItemID | min 2 chars | agendaItem.data.id | String |
+| documentID | min 1 char | documents.data.id | String |
+| termID | min 1 char | terms.data.id | String |
+| id | min 4 chars | id | String |
+
 
 ##### `/api/v1/search/people?`
 
@@ -205,7 +211,7 @@ ___
   "meta": {
     "api": {
       "version": "1.0",
-      "documentation": "https://de.openparliament.tv/documentation/api"
+      "documentation": "https://de.openparliament.tv/api"
     },
     "requestStatus": "success",
     "results": {
