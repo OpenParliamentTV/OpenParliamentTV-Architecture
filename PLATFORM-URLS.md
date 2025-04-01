@@ -42,33 +42,33 @@
 `/passwordreset`   
 `/logout`  
 
-`/dashboard` (content depends on user role / rights)  
+`/manage` (content depends on user role / rights)  
 
 `/manage/notifications`  
 
 `/manage/users` (only admins)  
 `/manage/users/USERID` (access depends on user role / rights)  
 
-**Manage Data**
+**Manage Media**
 
-`/manage/data` (content depends on user role / rights)  
-`/manage/data/media/MEDIAID` (access depends on user role / rights)  
-`/manage/data/person/PERSONID` (access depends on user role / rights)  
-`/manage/data/organisation/ORGANISATIONID` (access depends on user role / rights)  
-`/manage/data/document/DOCUMENTID` (access depends on user role / rights)  
-`/manage/data/term/TERMID` (access depends on user role / rights)  
+`/manage/media` (access depends on user role / rights)  
+`/manage/media/MEDIAID` (only admins)  
+`/manage/media/new` (only admins)  
 
-`/manage/data/media/new` (access depends on user role / rights)  
-`/manage/data/person/new` (access depends on user role / rights)  
-`/manage/data/organisation/new` (access depends on user role / rights)  
-`/manage/data/document/new` (access depends on user role / rights)  
-`/manage/data/term/new` (access depends on user role / rights)  
+**Manage Entities**
+
+`/manage/entities` (access depends on user role / rights)  
+`/manage/entities/person/PERSONID` (access depends on user role / rights)  
+`/manage/entities/organisation/ORGANISATIONID` (access depends on user role / rights)  
+`/manage/entities/document/DOCUMENTID` (access depends on user role / rights)  
+`/manage/entities/term/TERMID` (access depends on user role / rights)  
+`/manage/entities/new` (access depends on user role / rights)  
 
 **Administration**
 
 `/manage/import` (only admins)  
-`/manage/conflicts` (only admins)  
-`/manage/conflicts/CONFLICTID` (only admins)  
+`/manage/import/conflicts` (only admins)  
+`/manage/import/conflicts/CONFLICTID` (only admins)  
 `/manage/config` (only admins)  
 
 ## 4. Documentation
