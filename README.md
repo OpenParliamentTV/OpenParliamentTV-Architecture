@@ -13,5 +13,4 @@
 | Repository| Description | 
 | :------------- | :---------- | 
 | [OpenParliamentTV-Platform](https://github.com/OpenParliamentTV/OpenParliamentTV-Platform) |  |
-| [OpenParliamentTV-NEL](https://github.com/OpenParliamentTV/OpenParliamentTV-NEL) |  |
 | [OpenParliamentTV-Website](https://github.com/OpenParliamentTV/OpenParliamentTV-Website) |  |
