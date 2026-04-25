@@ -1,4 +1,4 @@
-# Open Parliament Platform Public API (DRAFT)
+# Open Parliament Platform Public API
 
 ## 1. General Notes
 
