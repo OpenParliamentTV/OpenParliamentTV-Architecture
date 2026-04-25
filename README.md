@@ -26,13 +26,13 @@ OpenParliamentTV is a video platform for parliamentary debates: every speech is 
    └────────────┬─────────────┘
                 │  Stage 2 JSON
                 ▼
-   ┌──────────────────────────┐         ┌────────────────────────────────────┐
-   │  OpenParliamentTV-Data-* │         │ OpenParliamentTV-                  │
-   │  (per-parliament repos)  │         │ Additional-Data-Service            │
-   └────────────┬─────────────┘         │ Wikidata · Wikipedia · Commons ·   │
-                │                       │ + per-parliament sources           │
-                ▼                       └────────────────┬───────────────────┘
-   ┌──────────────────────────┐                          │
+   ┌──────────────────────────┐          ┌────────────────────────────────────┐
+   │  OpenParliamentTV-Data-* │          │ OpenParliamentTV-                  │
+   │  (per-parliament repos)  │          │ Additional-Data-Service            │
+   └────────────┬─────────────┘          │ Wikidata · Wikipedia · Commons ·   │
+                │                        │ + per-parliament sources           │
+                ▼                        └────────────────┬───────────────────┘
+   ┌──────────────────────────┐                           │
    │ OpenParliamentTV-Platform│ ◀────── entity enrichment ┘
    │   (public site & API)    │
    └──────────────────────────┘
