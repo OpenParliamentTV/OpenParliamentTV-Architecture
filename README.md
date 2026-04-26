@@ -1,6 +1,6 @@
 # OpenParliamentTV Architecture
 
-OpenParliamentTV is a video platform for parliamentary debates: every speech is searchable through its transcript, and every transcript sentence can jump the player to the matching point in the video. This repository is the cross-repo home for the project's specifications, conventions, and architecture documentation.
+**Open Parliament TV** is a **search engine** and **interactive video platform** for **parliamentary debates**. This repository is the cross-repo home for the project's specifications, conventions, and architecture documentation.
 
 ## Specs
 
