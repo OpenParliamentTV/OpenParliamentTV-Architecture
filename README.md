@@ -14,29 +14,7 @@ OpenParliamentTV is a video platform for parliamentary debates: every speech is 
 
 ## Repositories
 
-```
-   ┌──────────────────────────┐
-   │    Parliament sources    │  TEI XML, Akoma Ntoso, RSS, custom APIs
-   └────────────┬─────────────┘
-                │
-                ▼
-   ┌──────────────────────────┐
-   │   OpenParliamentTV-Tools │  Stage 1 (per parliament) + Stage 2 (shared)
-   │   (run by Conductor)     │  fetch · parse · merge · NEL · align · NER
-   └────────────┬─────────────┘
-                │  Stage 2 JSON
-                ▼
-   ┌──────────────────────────┐          ┌────────────────────────────────────┐
-   │  OpenParliamentTV-Data-* │          │ OpenParliamentTV-                  │
-   │  (per-parliament repos)  │          │ Additional-Data-Service            │
-   └────────────┬─────────────┘          │ Wikidata · Wikipedia · Commons ·   │
-                │                        │ + per-parliament sources           │
-                ▼                        └────────────────┬───────────────────┘
-   ┌──────────────────────────┐                           │
-   │ OpenParliamentTV-Platform│ ◀────── entity enrichment ┘
-   │   (public site & API)    │
-   └──────────────────────────┘
-```
+![OpenParliamentTV architecture](OpenParliamentTV-Architecture.svg)
 
 | Repository | Role |
 |------------|------|
