@@ -1,4 +1,4 @@
-# OpenParliamentTV Architecture
+# Open Parliament TV - Architecture
 
 **Open Parliament TV** is a **search engine** and **interactive video platform** for **parliamentary debates**. This repository is the cross-repo home for the project's specifications, conventions, and architecture documentation.
 
