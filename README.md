@@ -9,7 +9,6 @@ OpenParliamentTV is a video platform for parliamentary debates: every speech is 
 - [SHORTCODES.md](SHORTCODES.md) — Naming conventions for instances, parliaments, and languages.
 - [PLATFORM-API.md](PLATFORM-API.md) — Public JSON:API specification.
 - [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.md) — Example responses for the platform's data types.
-- [PLATFORM-DATAIMPORT.md](PLATFORM-DATAIMPORT.md) — Platform import contract; defers field-level details to STAGE2-FORMAT.md.
 - [PLATFORM-URLS.md](PLATFORM-URLS.md) — Frontend and API URL patterns.
 
 ## Repositories
