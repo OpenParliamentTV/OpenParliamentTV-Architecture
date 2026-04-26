@@ -3,17 +3,15 @@
 ## 1. Search
 `/search?params=`  
 `/api/v1/search/ITEMTYPE?params=`  
+`/api/v1/autocomplete/ITEMTYPE?params=`  
 
-## 2. Media, Resources & Users
+## 2. Media & Resources
 ### Media Details
 `/media/MEDIAID`  
 `/api/v1/media/MEDIAID`  
 
-#### Media Embed
-`/embed/MEDIAID`  
-
-#### Media-specific Annotations (People, Organisations, Documents, Terms)
-`/api/v1/media/MEDIAID/annotations`   
+#### Embed
+`/embed/entity?type=TYPE&id=ID`  
 
 ### Person Details
 `/person/PERSONID`  
@@ -31,20 +29,29 @@
 `/term/TERMID`  
 `/api/v1/term/TERMID`  
 
-### User Details
-`/user/USERID`  (access depends on user role / rights)
-`/api/v1/user/USERID`  (access depends on user role / rights)
+### Agenda Item Details
+`/agendaItem/AGENDAITEMID`  
+`/api/v1/agendaItem/AGENDAITEMID`  
+
+### Session Details
+`/session/SESSIONID`  
+`/api/v1/session/SESSIONID`  
+
+### Electoral Period Details
+`/electoralPeriod/ELECTORALPERIODID`  
+`/api/v1/electoralPeriod/ELECTORALPERIODID`  
 
 ## 3. Login & Administration
 `/login`  
-`/register`   
-`/registerconfirm`   
-`/passwordreset`   
+`/register`  
+`/registerConfirm`  
+`/password-reset`  
 `/logout`  
 
 `/manage` (content depends on user role / rights)  
 
 `/manage/notifications`  
+`/manage/settings` (only admins)  
 
 `/manage/users` (only admins)  
 `/manage/users/USERID` (access depends on user role / rights)  
@@ -58,20 +65,24 @@
 **Manage Entities**
 
 `/manage/entities` (access depends on user role / rights)  
-`/manage/entities/person/PERSONID` (access depends on user role / rights)  
-`/manage/entities/organisation/ORGANISATIONID` (access depends on user role / rights)  
-`/manage/entities/document/DOCUMENTID` (access depends on user role / rights)  
-`/manage/entities/term/TERMID` (access depends on user role / rights)  
-`/manage/entities/new` (access depends on user role / rights)  
+`/manage/entity-suggestions` (access depends on user role / rights)  
+
+**Manage Structure**
+
+`/manage/structure` (only admins)  
+`/manage/structure/electoralPeriod/ELECTORALPERIODID` (only admins)  
+`/manage/structure/session/SESSIONID` (only admins)  
+`/manage/structure/agendaItem/AGENDAITEMID` (only admins)  
 
 **Administration**
 
 `/manage/import` (only admins)  
-`/manage/import/conflicts` (only admins)  
-`/manage/import/conflicts/CONFLICTID` (only admins)  
-`/manage/config` (only admins)  
+`/manage/conflicts` (only admins)  
+`/manage/conflicts/CONFLICTID` (only admins)  
 
-## 4. Documentation
-`/documentation`  
-`/documentation/api`  
-
+## 4. Other Pages
+`/about`  
+`/datapolicy`  
+`/imprint`  
+`/press`  
+`/statistics`  
