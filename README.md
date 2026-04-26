@@ -13,7 +13,7 @@ OpenParliamentTV is a video platform for parliamentary debates: every speech is 
 
 ## Repositories
 
-![OpenParliamentTV architecture](OpenParliamentTV-Architecture.svg)
+[![OpenParliamentTV architecture](OpenParliamentTV-Architecture.svg)](OpenParliamentTV-Architecture.svg)
 
 | Repository | Role |
 |------------|------|
