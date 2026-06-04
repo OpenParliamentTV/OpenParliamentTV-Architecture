@@ -94,7 +94,19 @@ Set by the pipeline itself; producers do not author these.
 
 ## Optional fields
 
-Add value but not blocking: `originTextID`, `media.audioFileURI`, `media.originMediaID`, `media.additionalInformation` (free-form JSON for parliament-specific media metadata), `media.thumbnailURI` and its creator/license, `people[].role`, `documents[]` (referenced bills, Drucksachen, etc.).
+Add value but not blocking: `originID`, `media.audioFileURI`, `media.originMediaID`, `media.additionalInformation` (free-form JSON for parliament-specific media metadata), `media.thumbnailURI` and its creator/license, `people[].role`, `people[].originPersonID` (a parliament-native person id, where the source provides one), `documents[]` (referenced bills, Drucksachen, etc.).
+
+### Speech / media / text identity
+
+Three id slots, each at its **own level**, never duplicated:
+
+| Field | What it is |
+|-------|------------|
+| `originID` (on the speech) | A **joint** speech id — set **only** when the source has one identity spanning media ⋈ proceedings (e.g. SE's `anforande`-based key `HD0930-1`). Absent when there is no joint id (DE, EU, FR, …); the speech is then identified by its text id + `speechIndex`. |
+| `media.originMediaID` | The media source id. |
+| `textContents[].originTextID` | The proceedings / text source id. |
+
+The platform does **not** read the speech-level id at all — media identity is keyed on `media.sourcePage`.
 
 ---
 
@@ -109,11 +121,13 @@ Text is supported in two modes:
 
 Producers should always include `textContents` when transcript text exists, with or without timings. The pipeline's alignment stage can add timings later.
 
+**Language codes.** `textContents[].language` and the speech-level `originalLanguage` use **ISO 639 Alpha-2, lowercase** (`de`, `es`, `sv`, `fr`, `pt`, `nb`, `zh`, `en`; Alpha-3 lowercase only in special cases) per [SHORTCODES.md](SHORTCODES.md) §3. Both must use the same standard within a document: `originalLanguage` selects the original entry out of a multi-language `textContents[]` array (the entry whose `language == originalLanguage`), so a multilingual speech emits one `textContents[]` entry per language.
+
 ```json
 {
   "textContents": [{
     "type": "proceedings",
-    "language": "DE-de",
+    "language": "de",
     "originTextID": "ID19001-123",
     "sourceURI": "https://bundestag.de/...",
     "creator": "Deutscher Bundestag",
