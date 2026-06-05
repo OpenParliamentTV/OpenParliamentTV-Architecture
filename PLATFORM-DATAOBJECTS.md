@@ -45,7 +45,7 @@
         "sourceURI": "https://www.bundestag.de/resource/blob/813c4/19203-data.xml",
         "creator": "Deutscher Bundestag",
         "license": "Public Domain",
-        "language": "DE-de",
+        "language": "de",
         "originTextID": "9786865",
         "lastChanged": "2021-03-18T03:22+00:00"
       }
