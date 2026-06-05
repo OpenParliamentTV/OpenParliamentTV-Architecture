@@ -6,6 +6,7 @@
 
 - [PIPELINE.md](PIPELINE.md) — How parliament data flows from source to platform: Stage 1 (parliament-specific fetch/parse/merge) → Stage 2 (common format) → Stage 3+ (enrichment, validation, publishing).
 - [STAGE2-FORMAT.md](STAGE2-FORMAT.md) — The Stage 2 JSON format every parliament implementation must produce. Field categories, text and video modes, producer obligations.
+- [DATA-STRUCTURES.md](DATA-STRUCTURES.md) — Structural background for STAGE2-FORMAT: where each parliament's temporal hierarchy, ID model, media↔speech relationship, and agenda granularity diverge from the Bundestag baseline, and the inconsistencies the model can't yet express.
 - [SHORTCODES.md](SHORTCODES.md) — Naming conventions for instances, parliaments, and languages.
 - [PLATFORM-API.md](PLATFORM-API.md) — Public JSON:API specification.
 - [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.md) — Example responses for the platform's data types.
