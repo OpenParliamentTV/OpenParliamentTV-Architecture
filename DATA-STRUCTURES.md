@@ -43,6 +43,8 @@ This model **assumes the Bundestag shape**: a small-integer sequential Wahlperio
 
 For each parliament: the structural facts that differ from the Bundestag baseline. Parliaments are grouped as **supranational**, **national**, and **regional** (the German Landtage), which are clustered together at the end.
 
+> **Two distinct merge operations (don't conflate).** Several entries below describe a parliament's *merge* / *join* shape. *Record matching* (e.g. Needleman-Wunsch) aligns two parallel lists — proceedings speeches ⋈ per-speech video clips — on metadata (speaker, sequence, duration) to decide *which text belongs to which video*; it produces pairings, not timestamps. *Forced alignment* (e.g. aeneas) works *within* one already-matched audio+text pair to decide *at what second each sentence starts*; it produces per-sentence timestamps. Record matching runs first, forced alignment second; neither segments a continuous session recording into individual speeches (that needs a separate speech-segmentation step).
+
 ### Supranational
 
 #### 2.1 EU (European Parliament): multiple structural mismatches
