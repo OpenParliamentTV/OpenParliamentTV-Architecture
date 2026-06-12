@@ -1,6 +1,6 @@
 # Cross-Parliament Data Structures
 
-_Living document. Last updated 2026-06-05._
+_Living document. Last updated 2026-06-12._
 
 This document surveys the **structural divergences** across the parliaments Open Parliament TV has either implemented or evaluated as integration candidates. It covers the places where the generic hierarchy or ID model leaks, where one parliament's source shape doesn't fit the others, and where the platform's assumptions break down. It is background for [STAGE2-FORMAT.md](STAGE2-FORMAT.md), which defines the Stage 2 JSON format itself; field-level schema details (exact ID strings, faction shapes, language codes) belong there, not here.
 
