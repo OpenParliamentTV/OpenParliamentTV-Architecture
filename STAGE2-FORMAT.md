@@ -26,15 +26,17 @@ This document describes the format conceptually: envelope, field categories, tex
 ```json
 {
   "meta": {
+    "schemaVersion": "1.0",
     "session": "20001",
     "dateStart": "2021-10-26T09:00:00+02:00",
     "dateEnd":   "2021-10-26T18:30:00+02:00",
+    "lastProcessing": "ner",
+    "lastUpdate": "2024-01-15T10:05:00",
     "processing": {
       "parse_media":       "2024-01-15T10:00:00",
       "parse_proceedings": "2024-01-15T10:01:00",
       "merge":             "2024-01-15T10:02:00"
-    },
-    "schemaVersion": "1.0"
+    }
   },
   "data": [ /* speech items */ ]
 }
