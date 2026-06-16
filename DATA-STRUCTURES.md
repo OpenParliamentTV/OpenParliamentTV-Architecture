@@ -1,6 +1,6 @@
 # Cross-Parliament Data Structures
 
-_Living document. Last updated 2026-06-12._
+_Living document. Last updated 2026-06-16._
 
 This document surveys the **structural divergences** across the parliaments Open Parliament TV has either implemented or evaluated as integration candidates. It covers the places where the generic hierarchy or ID model leaks, where one parliament's source shape doesn't fit the others, and where the platform's assumptions break down. It is background for [STAGE2-FORMAT.md](STAGE2-FORMAT.md), which defines the Stage 2 JSON format itself; field-level schema details (exact ID strings, faction shapes, language codes) belong there, not here.
 
@@ -111,38 +111,49 @@ For each parliament: the structural facts that differ from the Bundestag baselin
 - **`electoralPeriod.number = 17` stays a clean sequential integer (FR class), not a year.** Two layers of "period" (legislatura + *sessão legislativa*, the parliamentary year, where reunião numbers reset each year), but, like FR, the term stays integer and the dropped intra-term level is folded into `session.number = sessão_legislativa * 1000 + reunião` (TW/FI/FR composite-encoding class).
 - **One Stage 2 session = one reunião plenária** (a calendar-day sitting).
 
+#### 2.10 AT (Österreichischer Nationalrat): media-spine two-source merge on a single shared id, server-trimmed HLS windows
+
+- **Two-source merge with a *media* spine and an *exact integer-id join* (no record matching).** Like PT the spine is the media side (the Mediathek `redner` list — one on-camera speech each), but unlike DE/ES/PT there is **no Needleman-Wunsch / fuzzy matching**: the stenographic-protocol `std_id` *equals* the media `st_objekte_id`, so verbatim text grafts onto each video clip by integer key (the cleanest two-source join in the corpus, cf. SE's `anforande_nummer` but here the one id spans *both* streams).
+- **One source id is *both* the media and the text id.** That shared `std_id` is written to `media.originMediaID` **and** `textContents[].originTextID`; because it is not a *distinct* joint id, `speech.originID` is deliberately left unset (the normalizer would drop a redundant copy). Distinct from every other parliament, where the media and text ids differ.
+- **Media not 1:1 with the session recording (§3.2), solved server-side via query params.** Every speech's `media.videoFileURI` is the *same* full-session HLS master trimmed by `?startseconds=…&stopseconds=…`; the server returns exactly the per-speech window, so the platform gets a directly-playable trimmed HLS URL with **no offset column or `#t=` fragment** (PT/DE-BY ergonomics) — a third variant of the §3.2 workaround alongside EU/SE `startOffset` and the `#t=start,end` fragment. The per-speech MP3/MP4 clip assets the resolver *also* returns are inconsistent (sometimes absent, sometimes the whole session), so the trimmed HLS is the canonical per-speech audio for alignment.
+- **Two-level period axis, clean integer term (DE/DE-BY/PT class).** `electoralPeriod.number = 27` is a sequential Gesetzgebungsperiode and `session.number` = Sitzungsnr → `27{NNN}` fits the platform slots. No dropped intra-term level (§3.4/§4.2 do not apply).
+- **Agenda granularity is per *Debatte* (agenda-item level).** Speeches inherit their debate's title, so several speeches share one `agendaItem` — between DE's per-speech titles and TW's one-item-per-meeting.
+- **Whole-session / procedural container entries leak into the speech set.** A "Präsidium" or session-overview `redner` can carry a window spanning hours and the full procedural text, emitted as one long "speech" — a real speech-segmentation step is missing.
+- **`originPersonID` = `pad_intern`**, the parliament-native person id (matching the protocol's `PAD_<n>` anchor), emitted alongside the resolved Wikidata id — the NO/SE/FI/DE-NW pattern (reinforces §4.4).
+- **Real verbatim stenographic text — *not* the experimental PDF/VTT tier.** The text is official per-speech HTML, so AT is a genuine two-source national like DE/ES/PT, not a video-spine-with-grafted-text prototype.
+
 ### Regional parliaments (German Landtage)
 
-#### 2.10 DE-RP (Landtag Rheinland-Pfalz)
+#### 2.11 DE-RP (Landtag Rheinland-Pfalz)
 
 - ~5-digit `meta.session` (`"18085"`) and same shape as DE, with no structural divergence at the hierarchy level. The resulting Stage 2 conforms to the Bundestag-shaped model.
 
-#### 2.11 DE-ST (Landtag Sachsen-Anhalt): three-level temporal hierarchy (Sitzungsperiode dropped)
+#### 2.12 DE-ST (Landtag Sachsen-Anhalt): three-level temporal hierarchy (Sitzungsperiode dropped)
 
 - **Three-level temporal hierarchy.** The native model is `Wahlperiode > Sitzungsperiode > Landtagssitzung > TOP > Redebeitrag`. Sitzungsperiode is a 1–3 day plenary block grouped under a single portal URL; Landtagssitzung is the calendar-day-level unit canonical for Plenarprotokoll citations. The Stage 2 model flattens to `electoralPeriod > session`, so Sitzungsperiode is recorded in `meta.sitzungsperiode` / `debug.*` only and not first-class, the same intra-term-grouping pattern as NO (`sesjon`) and SE (`riksmöte`). 5-digit `meta.session` (`"08105"`) keyed by Landtagssitzung; matches DE/DE-RP shape at the schema level.
 - **Canonical session number is not exposed as structured data.** The portal renders Sitzung numbers only in transcript prose ("Hiermit eröffne ich die NNN. Sitzung") and Tagesordnung / Plenarprotokoll PDF headers, never as a `data-*` attribute or JSON field. The pipeline derives it structurally from a cumulative day-count across the archive.
 
-#### 2.12 DE-SH (Landtag Schleswig-Holstein): three-level temporal hierarchy, video spine + experimental PDF→TEI text
+#### 2.13 DE-SH (Landtag Schleswig-Holstein): three-level temporal hierarchy, video spine + experimental PDF→TEI text
 
 - **Three-level temporal hierarchy.** The native model is `Wahlperiode > Tagung > Landtagssitzung > TOP > Redebeitrag`. Tagung is a 1–3 day plenary block; Landtagssitzung is the calendar-day-level unit canonical for Plenarprotokoll citations. The Stage 2 model flattens to `electoralPeriod > session`, so Tagung is recorded in `meta.tagung` / `debug.*` only and not first-class, the same intra-term-grouping pattern as DE-ST, NO (`sesjon`), SE (`riksmöte`). 5-digit `meta.session` (`"20119"`) keyed by Landtagssitzung; matches DE/DE-RP/DE-ST shape at the schema level.
 - **Video spine + experimental PDF→TEI text.** The per-speech identity comes from the media stream; the Plenarprotokoll PDF is parsed via `optv.shared.pdf2tei` and joined onto that spine in the merger, so matched speeches carry verbatim `textContents` (unmatched keep `[]`). This text path is **experimental and unvalidated** (no Whisper-QC/text-fidelity audit) and not yet platform-ready. Structurally distinct from DE-BE, which has neither a text nor a per-speech video spine. See the three-regime framing in §4.7.
 - **Media not 1:1 with speech.** Per-speech windows on a shared recording are addressed with an HTML5 media-fragment URI (`#t=start,end`), the same `#t=` solution SE uses, but present in the source data rather than synthesised by the merger.
 - **Agenda granularity.** A per-speech `(TOP-no, thema)` pair; the merger emits one `agendaItem.id = "TOP-{n}"` per speech, so the agenda is effectively per-speech, slightly over-resolved (§3.5).
 
-#### 2.13 DE-BE (Abgeordnetenhaus von Berlin): no source-side per-speech spine
+#### 2.14 DE-BE (Abgeordnetenhaus von Berlin): no source-side per-speech spine
 
 - **The structural case where no source format provides per-speech segmentation.** The proceedings are published as Plenarprotokoll PDFs only; the open-data XML is metadata + page-anchored agenda only, with zero proceedings text.
 - **Video: session-level only.** The available recordings split each session into a few coarse segments (or post the full session), with no per-speech granularity on either channel.
 - DE-BE is the most extreme case of the structural problem in §3.2 (media not 1:1 with speech): both media *and* text are session-level. The EU/SE startOffset workaround does not apply without first deriving a spine. See the three-regime framing in §4.7.
 
-#### 2.14 DE-BY (Bayerischer Landtag): video spine + experimental PDF→TEI text, native per-speech HLS masters
+#### 2.15 DE-BY (Bayerischer Landtag): video spine + experimental PDF→TEI text, native per-speech HLS masters
 
 - **Video spine + experimental PDF→TEI text (the pilot for this tier):** the per-speech video spine carries identity; the Plenarprotokoll PDF is parsed via `optv.shared.pdf2tei` and joined onto it in the merger, so matched speeches carry verbatim `textContents` (unmatched keep `[]`), and DE-BY additionally runs `align`/`ner`. This text+align path is **experimental and unvalidated** (no Whisper-QC/text-fidelity audit) — not yet platform-ready. Distinct from DE-BE (neither stream).
 - **The source's *native* granularity is the speech.** DE-BY serves **one complete native HLS master playlist per speech**, with no fragment, no offset column, no clip-param. So `videoFileURI` is a directly-playable per-speech clip and the platform needs nothing new (like DE's one-MP4-per-speech but HLS). There is **no per-speech end/duration field** in the source.
 - **Two-level period axis.** `electoralPeriod.number = 19` is a sequential Wahlperiode (DE class) and `session.number` = Sitzungsnr → `19{NNN}` fits the platform slots. Bavaria is a **pure two-level hierarchy** (Wahlperiode > Sitzung): unlike DE-ST (`Sitzungsperiode`) and DE-SH (`Tagung`) there is **no dropped intra-term super-level**, so no `meta.tagung`/ `subPeriod` is needed (§3.4/§4.2 do not apply).
 - **Genuine per-TOP agenda granularity.** Each playlist is one Tagesordnungspunkt with its own title and its own set of speeches, so the agenda model fits naturally (one `agendaItem` per TOP), without DE-SH's per-speech over-resolution (§3.5) or TW's one-item-per-meeting coarseness.
 
-#### 2.15 DE-BW (Landtag von Baden-Württemberg): video spine + experimental PDF→TEI text, per-part MP4 + offset model
+#### 2.16 DE-BW (Landtag von Baden-Württemberg): video spine + experimental PDF→TEI text, per-part MP4 + offset model
 
 - **Video spine + experimental PDF→TEI text (DE-SH/DE-BY regime):** the Plenarprotokoll PDF is parsed via `optv.shared.pdf2tei` and joined onto the per-speech video spine in the merger, so matched speeches carry verbatim `textContents` (unmatched keep `[]`); `align`/`ner` are wired. **Experimental and unvalidated** (no Whisper-QC; BW's single-debate continuation-merge makes the text↔spine join its hardest case) — not yet platform-ready.
 - **Per-speech video is the SE/DE-SH `#t=start,end` offset model:** one MP4 per Sitzung-part, with per-speech windows addressed by an HTML5 media-fragment `#t=start,end` on `videoFileURI` + `additionalInformation.startOffset/endOffset`. The per-speech **end** is synthesised as the next speech's start *within the same part* (the source carries only a start offset). Times are **video-relative** (no per-speech wall-clock in the source), so `debug.timesAreVideoRelative = true`.
@@ -150,7 +161,7 @@ For each parliament: the structural facts that differ from the Bundestag baselin
 - **Two-level period axis (DE-BY class).** `electoralPeriod.number = 17` is a sequential Wahlperiode and `session.number` = Sitzungsnr → `17{NNN}` fits the platform slots. Pure two-level hierarchy, with no dropped intra-term super-level (§3.4/§4.2 do not apply).
 - **Genuine per-TOP agenda granularity.** Each chapter is one Tagesordnungspunkt with its own title/description and speeches (one `agendaItem` per TOP, `id = "TOP-{n}"`), without DE-SH's per-speech over-resolution (§3.5) or TW's one-item-per-meeting coarseness.
 
-#### 2.16 DE-HH (Hamburgische Bürgerschaft): video spine + experimental PDF→TEI text, per-TOP clip, real wall-clock, source-native UUID `originID`
+#### 2.17 DE-HH (Hamburgische Bürgerschaft): video spine + experimental PDF→TEI text, per-TOP clip, real wall-clock, source-native UUID `originID`
 
 - **Video spine + experimental PDF→TEI text (DE-SH/DE-BY/DE-BW regime):** the Plenarprotokoll PDF (ParlDok) is parsed via `optv.shared.pdf2tei` and joined onto the per-speech video spine in the merger, so matched speeches carry verbatim `textContents` (unmatched keep `[]`); `align`/`ner` are wired. **Experimental and unvalidated** (no Whisper-QC/text-fidelity audit) — not yet platform-ready.
 - **Per-speech video is the SE/DE-SH `#t=start,end` offset model, but per-TOP not per-part** (cf. DE-BW): each Tagesordnungspunkt is one server-side-clipped HLS master, and per-speech windows are addressed by `#t=start,end` on that clip + `additionalInformation.startOffset/endOffset` (offsets relative to the TOP clip). A sign-language stream variant is exposed alongside the clean stream. Structurally between PT's per-speech HLS clip and DE-BW's per-part MP4 + fragment: per-TOP clip + per-speech fragment.
@@ -159,7 +170,7 @@ For each parliament: the structural facts that differ from the Bundestag baselin
 - **Two-level period axis (DE-BY/DE-BW class).** `electoralPeriod.number = 23` is a sequential Wahlperiode and `session.number` = Sitzungsnr → `23{NNN}` fits the platform slots. Pure two-level hierarchy, with no dropped intra-term super-level (§3.4/§4.2 do not apply).
 - **Genuine per-TOP agenda granularity.** Each video is one Tagesordnungspunkt with its own title and TOP number, and its speeches are joined to it; one `agendaItem` per TOP (`id = "TOP-{n}"` when numbered, else a capped title slug), without DE-SH's per-speech over-resolution (§3.5).
 
-#### 2.17 DE-NI (Niedersächsischer Landtag): video spine + experimental VTT text, typed JSON API with per-speech stable speaker IDs and time-aligned VTT text
+#### 2.18 DE-NI (Niedersächsischer Landtag): video spine + experimental VTT text, typed JSON API with per-speech stable speaker IDs and time-aligned VTT text
 
 - **Video spine + experimental VTT text:** unlike the PDF-locked Landtage, DE-NI's source exposes machine-readable, **time-aligned** text (WebVTT subtitles per subject). These are now parsed (`parsers/vtt2json.py`) and attached onto the per-speech spine by `speechIndex` (`attach_text_by_index`), so matched speeches carry `textContents` **with cue-derived sentence timings** — no separate aeneas alignment step (only `ner` runs). This VTT text path is **experimental and unvalidated** (the per-subject VTT↔speech calibration is fragile; no fidelity audit yet) — not yet platform-ready. The merger also records `media.additionalInformation.subtitleVttURI`.
 - **Per-speech video is the PT model (a per-speech server-side HLS clip), but parameterised** rather than a distinct file: a clip endpoint returns a server-side-clipped playlist of one per-Sitzung stream, so the clip URL **is** the speech, and (unlike DE-HH's per-TOP clip + `#t=` fragment, or DE-BW's per-part MP4 + fragment) there is no media fragment.
@@ -168,7 +179,7 @@ For each parliament: the structural facts that differ from the Bundestag baselin
 - **Three-level temporal hierarchy** (the DE-ST / DE-SH class, not DE-HH's pure two-level): **Wahlperiode > Tagungsabschnitt > Sitzung**. OPTV's `session.number` is the Sitzung; the Sitzung number is unique within the Wahlperiode, so the flat `19{NNN}` key holds and the dropped intra-term super-level (Tagungsabschnitt) is carried in `meta.tagungsabschnitt`/`debug` (§3.4/§4.2 apply).
 - **`fraktion` is always the party** (even the presiding chair retains their party), the opposite of DE-HH's overloaded function field. The chair/role signal lives in a separate `speechType`, which the parser maps to speaker `context`. Government members have an **empty** `fraktion` (they speak as government), so those speeches carry no faction.
 
-#### 2.18 DE-NW (Landtag Nordrhein-Westfalen): video spine + experimental PDF→TEI text, parliament-native MdL id + real wall-clock
+#### 2.19 DE-NW (Landtag Nordrhein-Westfalen): video spine + experimental PDF→TEI text, parliament-native MdL id + real wall-clock
 
 - **Video spine + experimental PDF→TEI text (DE-SH/DE-BY/DE-BW/DE-HH regime):** the Plenarprotokoll PDF is parsed via `optv.shared.pdf2tei` and joined onto the per-speech video spine in the merger, so matched speeches carry verbatim `textContents` (unmatched keep `[]`); `align`/`ner` are wired. **Experimental and unvalidated** (no Whisper-QC/text-fidelity audit) — not yet platform-ready.
 - **Per-speech video is the SE/DE-SH `#t=start,end` offset model** (one HLS stream per session, per-speech windows by media fragment + `additionalInformation.startOffset/endOffset`), but with an **offset-source variant**: the precise start offset is *not* in the session page; it is rendered server-side only when a single speech is selected, so the precise per-speech offset is gated behind a per-speech request rather than present in a bulk feed. The rendered end is unreliable, so the merger synthesises each window's end from the next speech's start (the DE-BW approach).
@@ -177,7 +188,7 @@ For each parliament: the structural facts that differ from the Bundestag baselin
 - **Separate `fraktion` + `funktion` fields, cleaner than DE-HH's overloaded function field:** `fraktion` is always the party (empty for chair/government), `funktion` the chair/government role. The parser routes them straight to `faction` vs `role` with no disambiguation heuristic.
 - **Two-level period axis (DE-BY/DE-BW/DE-HH class).** `electoralPeriod.number = 18` is a sequential Wahlperiode and `session.number` = Sitzungsnr → `18{NNN}` fits the platform slots. Pure two-level hierarchy, with no dropped intra-term super-level (§3.4/§4.2 do not apply).
 
-#### 2.19 DE-SN (Sächsischer Landtag): video spine + experimental PDF→TEI text, daily-stream `#t=` offset model with both offsets inline + real wall-clock
+#### 2.20 DE-SN (Sächsischer Landtag): video spine + experimental PDF→TEI text, daily-stream `#t=` offset model with both offsets inline + real wall-clock
 
 - **Video spine + experimental PDF→TEI text (DE-SH/DE-BY/DE-BW/DE-HH/DE-NW regime):** the Plenarprotokoll PDF is parsed via `optv.shared.pdf2tei` and joined onto the per-speech video spine in the merger, so matched speeches carry verbatim `textContents` (unmatched keep `[]`); `align`/`ner` are wired. **Experimental and unvalidated** (no Whisper-QC/text-fidelity audit) — not yet platform-ready.
 - **Per-speech video is the SE/DE-SH `#t=start,end` offset model on a per-DAY HLS stream.** One daily HLS recording per calendar date; per-speech windows by media fragment + `additionalInformation.startOffset/endOffset`. Unlike DE-BW/DE-NW (which carry only a start offset and synthesise the end as the next speech's start), DE-SN's source gives **both** start and end offsets inline, so no end-synthesis is needed.
@@ -208,6 +219,7 @@ Each finding labels the layer where the fix belongs (Tools / Schema / Platform).
 | DE-NW | 3 (018) | 4 (0117) | `DE-NW-0180117` (7) | session ✓, pure 2-level; nothing lost in flattening |
 | DE-SN | 3 (008) | 4 (0025) | `DE-SN-0080025` (7) | session ✓, pure 2-level; nothing lost in flattening |
 | ES | 3 (015) | 4 (0094) | `ES-0150094` (7) | session ✓ |
+| AT | 3 (027) | 4 (0144) | `AT-0270144` (7) | session ✓, pure 2-level; nothing lost in flattening |
 | TW | 3 (011) | 4 (5011) | `TW-0115011` (7) | session ✓ (digits fit, but `session.number=5011` is a composite encoding of session period × 1000 + meeting number) |
 | EU | 3 (010) | 8 (20251008) | `EU-01020251008` (11) | **mis-parsed as media** (length ≥ 8) |
 | SE | 4 (2025) | 3 (122) | `SE-2025122` (7) | length matches session, BUT period substring is split at pos 3 → period=`"202"`, session=`"5122"` → **wrong values** |
@@ -247,7 +259,7 @@ EU emits a single English `textContents[]` with `originalLanguage: "en"` regardl
 
 | Encoding | Parliaments | Consequence |
 |---|---|---|
-| Small sequential integer | DE (21) and the German Landtage, ES (15), EU (10), TW (11), FR (17), PT (17), NO (22)¹ | Fits the 3-digit slot; the model's intent |
+| Small sequential integer | DE (21) and the German Landtage, AT (27), ES (15), EU (10), TW (11), FR (17), PT (17), NO (22)¹ | Fits the 3-digit slot; the model's intent |
 | 4-digit year | FI (2023), SE (2025) | Overflows the 3-digit slot (§3.1); not numerically comparable to the integer codes |
 
 ¹ NO's source is a `"2025-2029"` year-range string, normalised to a synthetic sequential int.
@@ -291,7 +303,7 @@ The label "session" covers different real-world units:
 
 | Parliament | What one Stage 2 session represents |
 |---|---|
-| DE / DE-RP / DE-ST / DE-SH / DE-BY / DE-BW / DE-HH / DE-NI / DE-NW / DE-SN / ES | one calendar day (one Sitzung / Landtagssitzung / Sesión) |
+| DE / DE-RP / DE-ST / DE-SH / DE-BY / DE-BW / DE-HH / DE-NI / DE-NW / DE-SN / ES / AT | one calendar day (one Sitzung / Landtagssitzung / Sesión) |
 | EU | one calendar day with 3 sittings collapsed |
 | SE | one protokoll (calendar day) with sub-debate "anförande" |
 | TW | one meeting within a session period within a term |
