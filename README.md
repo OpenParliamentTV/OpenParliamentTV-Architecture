@@ -10,6 +10,7 @@
 - [SHORTCODES.md](SHORTCODES.md) — Naming conventions for instances, parliaments, and languages.
 - [PLATFORM-API.md](PLATFORM-API.md) — Public JSON:API specification.
 - [PLATFORM-DATAOBJECTS.md](PLATFORM-DATAOBJECTS.md) — Example responses for the platform's data types.
+- [PLATFORM-DB-SCHEMA.md](PLATFORM-DB-SCHEMA.md) — Conceptual relational (MariaDB/MySQL) schema behind the platform: the two-database design, what the tables are, and how they relate.
 - [PLATFORM-URLS.md](PLATFORM-URLS.md) — Frontend and API URL patterns.
 
 ## Repositories
