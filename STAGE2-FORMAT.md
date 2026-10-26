@@ -154,8 +154,8 @@ Producers should always include `textContents` when transcript text exists, with
 
 The format always operates per speech: every entry in `data[]` is one speech with its own `media.videoFileURI`. How that URI is constructed differs between parliaments:
 
-- **Per-speech video file** — each speech has its own dedicated file (e.g. German Bundestag, Swedish Riksdagen).
-- **Session-level video with timecodes** — one video file covers the whole session, and each speech's `videoFileURI` includes a media-fragment range (e.g. `…/session.mp4#t=120,596`) or a parliament-specific query parameter. The data model is unchanged; the producer is responsible for computing the timecodes.
+- **Per-speech video file** — each speech has its own dedicated file (e.g. German Bundestag, Austrian Parliament).
+- **Session-level video with timecodes** — one video file covers the whole session (or, as in the Swedish Riksdag, one debate), and each speech's `videoFileURI` includes a media-fragment range (e.g. `…/session.mp4#t=120,596`) or a parliament-specific query parameter. The data model is unchanged; the producer is responsible for computing the timecodes.
 
 `media.additionalInformation` (free-form JSON object) can carry supplementary metadata such as the un-fragmented session URL when the per-speech URI uses fragments.
 
@@ -172,7 +172,7 @@ If sentence timings are already in the source data, alignment is skipped entirel
 
 ## Speaker resolution
 
-If the source already provides a Wikidata ID (e.g. ParlaMint `<idno type="wikimedia">`, Riksdagen API), pass it through. Otherwise leave `people[].wid` empty — the NEL stage will resolve it against the platform's growing speaker cache. There is no need to maintain a parliament-specific speaker cache; the platform's NEL infrastructure handles this once a speaker has been added anywhere.
+If the source already provides a Wikidata ID (e.g. ParlaMint `<idno type="wikimedia">`), pass it through. Otherwise leave `people[].wid` empty — the NEL stage will resolve it against the platform's growing speaker cache. There is no need to maintain a parliament-specific speaker cache; the platform's NEL infrastructure handles this once a speaker has been added anywhere.
 
 A missing `wid` is a validation warning, never a blocker.
 
