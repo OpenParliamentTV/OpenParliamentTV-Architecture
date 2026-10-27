@@ -154,8 +154,8 @@ Producers should always include `textContents` when transcript text exists, with
 
 The format always operates per speech: every entry in `data[]` is one speech with its own `media.videoFileURI`. How that URI is constructed differs between parliaments:
 
-- **Per-speech video file** — each speech has its own dedicated file (e.g. German Bundestag, Austrian Parliament).
-- **Session-level video with timecodes** — one video file covers the whole session (or, as in the Swedish Riksdag, one debate), and each speech's `videoFileURI` includes a media-fragment range (e.g. `…/session.mp4#t=120,596`) or a parliament-specific query parameter. The data model is unchanged; the producer is responsible for computing the timecodes.
+- **Per-speech video file** — each speech has its own video resource: a dedicated file (e.g. German Bundestag), or a URL with a time range that the parliament's server cuts from the session recording, so that the response contains only the speech (e.g. Austrian Parliament, Polish Sejm, Parliament of Finland).
+- **Session-level video with timecodes** — one video file covers the whole session (or, as in the Swedish Riksdag, one debate), and each speech's `videoFileURI` adds a media-fragment range (e.g. `…/session.mp4#t=120,596`) that the player applies; the server returns the whole file. The data model is unchanged; the producer is responsible for computing the timecodes.
 
 `media.additionalInformation` (free-form JSON object) can carry supplementary metadata such as the un-fragmented session URL when the per-speech URI uses fragments.
 
@@ -164,7 +164,7 @@ The format always operates per speech: every entry in `data[]` is one speech wit
 For session-level video without source-provided sentence timings, the alignment stage needs isolated audio per speech to run forced alignment. The producer must either:
 
 1. Extract per-speech audio segments from the session video using speech boundary times, then run alignment over them, or
-2. Fetch per-speech clips from a parliament-provided clipping service.
+2. Fetch per-speech clips from a parliament-provided clipping service. A clipping service that serves each speech by URL makes the source per-speech video file mode (see above).
 
 If sentence timings are already in the source data, alignment is skipped entirely.
 
