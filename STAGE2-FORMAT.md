@@ -148,6 +148,19 @@ Producers should always include `textContents` when transcript text exists, with
 }
 ```
 
+### Speaker status
+
+Each `textBody[]` block's `speakerstatus` says who is speaking relative to the speech. It takes one of these values:
+
+| `speakerstatus` | Who | Platform effect |
+|-----------------|-----|-----------------|
+| `main-speaker` | The speech's credited (on-camera) speaker | Counted in the statistics index, which drives word statistics and search suggestions |
+| `president`, `vice-president`, `interim-president` | The session chair, also when the chair is the speech's own speaker | Stored as chair text in statistics; marked as chair in the AKN and ParlaMint exports |
+| `speaker` | Anyone else: an interjection, a question, a minister answering inside someone else's speech | Not counted |
+| `null` | No speaker, e.g. a heading before the first speaker | Not counted |
+
+A speaker's role or office (`Abgeordnete`, `ministre`, `statsminister`, …) is not a `speakerstatus`; it goes in `people[].role`. The full schema checks `speakerstatus` against the `people[].context` enum; the platform treats any value not listed above like `speaker`.
+
 ---
 
 ## Video reference modes
