@@ -125,6 +125,8 @@ Producers should always include `textContents` when transcript text exists, with
 
 **Language codes.** `textContents[].language` and the speech-level `originalLanguage` use **ISO 639 Alpha-2, lowercase** (`de`, `es`, `sv`, `fr`, `pt`, `nb`, `zh`, `en`; Alpha-3 lowercase only in special cases) per [SHORTCODES.md](SHORTCODES.md) §3. Both must use the same standard within a document: `originalLanguage` selects the original entry out of a multi-language `textContents[]` array (the entry whose `language == originalLanguage`), so a multilingual speech emits one `textContents[]` entry per language.
 
+**Text types.** `textContents[].type` is `proceedings` for the parliament's official record (stenographic protocol, gazette, Hansard) and `generated` for a machine transcript of the video, with its producer as `creator` and that producer's terms as `license`. A speech may carry one of each in the same language (TW: the official gazette text, untimed, plus a WhisperX transcript, timed); the `proceedings` entry comes first. The platform keys stored text on `(type, language)` and prefers `proceedings` over `generated`.
+
 ```json
 {
   "textContents": [{
