@@ -65,6 +65,9 @@ For each parliament: the structural facts that differ from the Bundestag baselin
 #### 2.3 ES (Congreso de los Diputados)
 
 - Sequential legislature. Per-session structure matches DE.
+- **Text document number ≠ session number.** The Diario de Sesiones series (`DSCD-15-PL-<n>`) covers the Pleno and the Diputación Permanente in one numbering, so Diario 184 holds plenary session 178. `session.number` (and the session key) is the plenary session number from the MP4 path (`15_000400_178_…`); the Diario id is the text document id (`originTextID`, PDF `sourceURI`). Diputación Permanente sittings (organ 500, own numbering) are not emitted, since their numbers would collide with plenary ones in the platform ID.
+- **One intervention, two clips.** Some interventions (e.g. a minister's answer and rejoinder in question time) are one source record with two MP4s, the questioner's clip recorded between them. The pipeline emits one speech per clip (`debug.clipIndex`), ordered by intervention id, so `media` stays 1:1 with the speech.
+- **Joint debates: one speech, several agenda items.** The source lists an intervention in a joint debate once per initiative, with the same MP4; with one `agendaItem` per speech, the pipeline emits the speech once per initiative (duplicate `media.sourcePage`).
 - One subtle structural quirk: the **proceedings-side never carries per-turn agenda titles** (everything is "Sesión plenaria"); only the media-side classification supplies meaningful `agendaItem.title` / `type`. So the agenda granularity comes from a different source than DE.
 - Coarse timing (HH:MM only) limits alignment quality.
 
