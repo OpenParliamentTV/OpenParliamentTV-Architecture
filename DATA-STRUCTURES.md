@@ -96,9 +96,9 @@ For each parliament: the structural facts that differ from the Bundestag baselin
 
 #### 2.7 FI (Eduskunta): three-source join, term-vs-session-year period mismatch
 
-- **Three-source merge.** Where every other parliament joins two streams (proceedings + media), FI joins **three**: (1) the broadcast `speakers[]` array (per-speech video offsets + speaker + party + agenda + reply flag) as the **media spine**, (2) the plenary-minutes XML for verbatim text, and (3) an external person register for entity resolution. The first two are joined on `personNumber` plus speech start time (`#t=`-fragment shape as SE/EU/NO); the third stream is the addition.
+- **Three-source merge.** Where every other parliament joins two streams (proceedings + media), FI joins **three**: (1) the broadcast `speakers[]` array (per-speech video offsets + speaker + party + agenda + reply flag) as the **media spine**, (2) the per-speech records of the open data API for verbatim text, and (3) an external person register for entity resolution. The first two are joined on `personNumber` plus speech start time (`#t=`-fragment shape as SE/EU/NO); the third stream is the addition.
 - **Two layers of "period", model has one (same class as SE).** Sessions are keyed by *valtiopäivät* (parliamentary year) + a per-year number that resets each year (`2026/58`), while the *vaalikausi* (4-year term) spans several years. The model flattens to one `electoralPeriod.number` = term start year (`2023`) and encodes `session.number = (year - 2023) * 1000 + number` so the per-year numbering doesn't collide across the term (TW/NO composite-encoding class). The valtiopäivät year is the dropped intra-term level. `electoralPeriod.number = 2023` is a 4-digit value that **does not fit the platform's 3-digit period slot**, the identical slot-width problem to SE (§3.1).
-- **Bilingual, handled as metadata only.** The minutes mark per-speech language (fi/sv). Stage 2 records `originalLanguage` per speech, but the pipeline runs uniformly in Finnish; Swedish-minority speeches degrade slightly. Reinforces §4.6.
+- **Bilingual, handled as metadata only.** Neither the speech records nor the minutes mark the language of a speech (Swedish speeches are tagged `fi`), so the adapter detects Swedish speeches from the text. Stage 2 records `originalLanguage` per speech, but the pipeline runs uniformly in Finnish; Swedish-minority speeches degrade slightly. Reinforces §4.6.
 
 #### 2.8 FR (Assemblée nationale): single-source spine
 
@@ -363,7 +363,7 @@ EU, SE, NO and most of the German Landtage have per-session (or per-debate / per
 
 ### 4.6 How are multilingual transcripts represented?
 
-The platform's DB is multilingual-ready; the pipeline is single-language. EU is the urgent case. NO is a secondary case (Bokmål + Nynorsk officially co-equal; current implementation forces `nb-NO`). FI is a third case (Finnish + Swedish officially co-equal): the minutes mark each speech's language, and FI records `originalLanguage` per speech, but runs the pipeline uniformly in Finnish, confirming that `originalLanguage` is cheap to record as data even when per-speech model switching is not built. Recommend: a Tools-side convention of one `textContents[]` entry per available language; platform writes one `text` row each; UI offers a language switcher.
+The platform's DB is multilingual-ready; the pipeline is single-language. EU is the urgent case. NO is a secondary case (Bokmål + Nynorsk officially co-equal; current implementation forces `nb-NO`). FI is a third case (Finnish + Swedish officially co-equal): the sources do not mark a speech's language, so FI detects it from the text and records `originalLanguage` per speech, but runs the pipeline uniformly in Finnish, confirming that `originalLanguage` is cheap to record as data even when per-speech model switching is not built. Recommend: a Tools-side convention of one `textContents[]` entry per available language; platform writes one `text` row each; UI offers a language switcher.
 
 ### 4.7 What does the pipeline do for parliaments with no source-side speech enumeration?
 
